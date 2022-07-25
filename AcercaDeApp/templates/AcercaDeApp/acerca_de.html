@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Acerca de - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+    {% for empleado in empleados %}
+
+    <section class="py-5" style="color:white;">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6" style=" background:white; border-radius:1rem;"><img class="card-img-top mb-5 mb-md-0" src="{{empleado.avatar.url}}" alt="..." /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder"">{{empleado.nombre}}</h1>
+                    <div class="fs-5 mb-5">
+                        <span>{{empleado.apellido}}</span>
+                    </div>
+                    <p class="lead">{{empleado.descripcion}}</p>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+   
+{% endblock contenido %}
