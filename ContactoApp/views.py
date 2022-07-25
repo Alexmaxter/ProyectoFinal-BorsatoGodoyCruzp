@@ -1,5 +1,19 @@
 from django.shortcuts import render
+from .forms import FormularioContacto
 
 def contacto(request):
+
+    formulario_contacto=FormularioContacto()
     
-    return render(request, "ContactoApp/contacto.html")
+    if request.method=="POST":
+
+        formulario_contacto = FormularioContacto(data=request.POST)
+
+        if formulario_contacto.is_valid():
+
+            nombre=request.POST.get("nombre")
+            email=request.POST.get("email")
+            contenido=request.POST.get("contenido")
+            
+
+    return render(request, "ContactoApp/contacto.html",{'formulario_contacto':formulario_contacto})

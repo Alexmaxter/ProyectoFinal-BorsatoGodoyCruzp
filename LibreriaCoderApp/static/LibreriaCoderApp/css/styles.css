@@ -11295,3 +11295,11 @@ body {
   background: url("../assets/img/Fondo.jpg") no-repeat center center fixed;
   background-size: cover;
 }
+
+.contenedorFormulario{
+  background-color: #212529;
+  width: 50%;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+}
