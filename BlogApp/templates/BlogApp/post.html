@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Crear post - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <!-- Page content-->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Post content-->
+                <article style="color:white;">
+                    <!-- Post header-->
+                    <header class="mb-4" >
+                        <!-- Post title-->
+                        <h1 class="fw-bolder mb-1">{{post.titulo}}</h1>
+                        
+                        <!-- Post meta content-->
+                        <div class="text-muted mb-2">{{post.subtitulo}}</div>
+                        <!-- Post meta content-->
+                        <div class="text-muted fst-italic mb-2">{{post.creado}}</div>
+                        
+                        <!-- Post categories-->
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">
+                            {% for categoria in post.categorias.all %}
+                            {{categoria.nombre}}
+                        {% endfor %}
+                        </a>
+                    </header>
+                    <!-- Preview image figure-->
+                    {% if post.imagen %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.imagen.url }}"alt="..." /></figure>
+                    {% endif %}
+                    <!-- Post content-->
+                    <section class="mb-5">
+                        {{post.contenido}}
+                    </section>
+                </article>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}

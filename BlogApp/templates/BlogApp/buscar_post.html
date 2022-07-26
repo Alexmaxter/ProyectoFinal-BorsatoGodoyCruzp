@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Busqueda - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+<div style="text-align: end; padding: 1rem;background-color: #212529;">
+    
+    
+    <form action={% url 'buscar_post' %} style="margin-right: 1rem ; color:white;" enctype="multipart/form-data">
+        
+        {{form}}
+        <button>Buscar</button>
+        
+        <a class="btn btn-primary" href={% url 'blog' %} style="margin: auto 1rem;">Volver al blog</a>
+    </form>
+</div>
+
+
+{% if listado_post %}
+
+    <main class="my-5">
+        <div class="container">
+          <!--Section: Content-->
+          <section class="text-left">
+    
+            <div class="row">
+                
+    {% for post in listado_post %}
+    <div class="col-lg-4" style="margin: 1rem auto; ">
+        <div class="card">
+          <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img  src="{{post.imagen.url}}" class="img-fluid" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{post.titulo}}</h5>
+            <p class="card-text">
+                <h6 class="mall text-muted" >{{post.subtitulo}}</h6>
+            </p>
+            <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} |   
+                {% for categoria in post.categorias.all %}
+                    {{categoria.nombre}}
+                {% endfor %} |
+            Autor: {{post.autor}}</div>
+            <br>
+            <a class="btn btn-primary" href='{% url "post" post.id %}'>Leer más→</a>
+            
+          </div>
+        </div>
+      </div>
+
+
+    {% endfor %}
+</div>
+</section>
+<!--Section: Content-->
+</div>
+</main>
+
+{% else %}
+<div style="width:50%;margin: 1rem auto; background-color: red; border-radius: 1rem;">
+            <p style="color: white; padding: 0.5rem; text-align: center;">¡NO SE HA ENCONTRADO NINGÚN RESULTADO!</p>
+</div   >
+{% endif %}
+
+
+
+
+
+{% endblock contenido %}

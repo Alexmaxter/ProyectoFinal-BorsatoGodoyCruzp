@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Crear post - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+<p>
+
+    <form action={% url 'crear_post' %} method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      
+      <table>{{form.as_table}} {{form.media}}</table>
+  
+      <center><button class="btn btn-primary" href="#about">Crear</button></center>
+    </form>
+
+</p>
+  
+{% endblock contenido %}

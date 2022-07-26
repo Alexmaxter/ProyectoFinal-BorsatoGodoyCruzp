@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Crear post - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<center>
+    <h1>Editar Post</h1>
+    
+    <p>
+      <form action={% url 'editar_post' post.id %} method="post" enctype="multipart/form-data">
+        
+        {% csrf_token %}
+        <table align='center'>{{form.as_table}}{{form.media}}</table>
+    
+        <br>
+        <button class="btn btn-primary" type="submit">Editar</button>
+        <a class="btn btn-primary" href={% url 'buscar_post' %}>Volver</a>
+      
+      </form>
+    </p>
+    </center>
+    
+{% endblock contenido %}

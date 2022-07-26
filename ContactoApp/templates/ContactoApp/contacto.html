@@ -10,15 +10,22 @@
 
 <div class="contenedorFormulario">
 
-    <form action="" method="POST" style="text-align: left;">
+    
+    {% if "valido" not in request.GET %}
+        <form action="" method="POST" style="text-align: left;">
 
-     {% csrf_token %}
-     <table style="color:white; margin: 1rem auto">{{formulario_contacto.as_table}}</table>
-     <div style="text-align: center;">
-     <input type="submit" value="Enviar" style="width:20%;">
-    </div>
-    </form>
+            {% csrf_token %}
+            <table style="color:white; margin: 1rem auto">{{formulario_contacto.as_table}}</table>
 
+            <div style="text-align: center;">
+            <input type="submit" value="Enviar" style="width:20%;">
+            </div>
+        </form>
+    {% else %}
+        <div style="width:100%;margin: 1rem auto; background-color: blue; border-radius: 1rem;">
+            <p style="color: white; padding: 0.5rem; text-align: center;">¡Información enviada correctamente!</p>
+        </div   >
+    {% endif %}
+   
 </div>
-<p style="color:white;">{{request.POST}}</p>
 {% endblock contenido %}

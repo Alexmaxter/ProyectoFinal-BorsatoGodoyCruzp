@@ -8,8 +8,7 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
-    rdonly_fields = ('creado','actualizado')
-
+    reaonly_fields = ('creado','actualizado','id')
 
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Post, PostAdmin)

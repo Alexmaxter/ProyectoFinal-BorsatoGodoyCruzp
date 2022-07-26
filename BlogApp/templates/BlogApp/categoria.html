@@ -6,6 +6,8 @@
 {% endblock titulo %}
 
 {% block contenido %}
+
+
 <section style="background-color: #212529">
     <div style="width=75%;padding:2rem;text-align:left;color: #ffffff;">
         <b>Categorias: </b>
@@ -30,7 +32,7 @@
                         {% endfor %} |
                     Autor: {{post.autor}}</div>
                 <h2 class="card-title h4">{{post.titulo}}</h2>
-                <p class="card-text">{{post.contenido}}</p>
+                <h6 class="card-title h6">{{post.subtitulo}}</h6>
                 <a class="btn btn-primary" href="#!">Leer más→</a>
             </div>
         </div>

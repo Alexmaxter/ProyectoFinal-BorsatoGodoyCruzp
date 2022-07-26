@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import FormularioContacto
+
 
 def contacto(request):
 
@@ -14,6 +15,8 @@ def contacto(request):
             nombre=request.POST.get("nombre")
             email=request.POST.get("email")
             contenido=request.POST.get("contenido")
+
+            return redirect("/contacto/?valido")
             
 
     return render(request, "ContactoApp/contacto.html",{'formulario_contacto':formulario_contacto})

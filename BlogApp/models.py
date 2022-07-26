@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 class Categoria(models.Model):
     nombre=models.CharField(max_length=50)
@@ -14,8 +15,10 @@ class Categoria(models.Model):
         return self.nombre
 
 class Post(models.Model):
+    
     titulo=models.CharField(max_length=50)
-    contenido=models.TextField()
+    subtitulo = models.CharField(max_length=50)
+    contenido= RichTextField(blank=True, null=True)
     imagen=models.ImageField(upload_to='blog',null=True, blank=True)
     autor=models.ForeignKey(User, on_delete=models.CASCADE)
     categorias=models.ManyToManyField(Categoria)
