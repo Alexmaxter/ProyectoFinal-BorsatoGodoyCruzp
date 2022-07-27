@@ -6,4 +6,16 @@
 {% block contenido %}
 
 
+<div style="width: 15%;">
+<div style="color: white; border-radius: 1rem; margin: 1rem;"class="bg-dark">
+    <div style="padding:1rem;">
+        <h5>Usuarios:</h5>
+    {% for user in users %}
+    <p style="margin-bottom: 0; text-transform: capitalize;">
+        {{user.username}}
+    </p>
+    {% endfor %}
+</div>
+</div>
+</div>
 {% endblock contenido %}

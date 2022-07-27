@@ -2,11 +2,19 @@
 {% load static %}
 
 {% block titulo %}
-<title>Crear post - LibreríaCoder</title>
+<title>{{post.titulo}} - LibreríaCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
 
+<div class="container mt-5" style="background-color: #212529; padding:1rem;">
+    <div class="row"> 
+    <div style="margin: 0 auto; width:40%;">
+        <a class="btn btn-danger" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Borrar post</a>
+        <a class="btn btn-primary" href='{% url "editar_post" post.id  %}' style="width:10rem">Editar post</a>
+</div>
+    </div>
+    </div>
     <!-- Page content-->
     <div class="container mt-5" style="background-color: #212529; padding:2rem; margin-bottom: 2rem;">
         <div class="row">
@@ -16,19 +24,18 @@
                     <!-- Post header-->
                     <header class="mb-4" >
                         <!-- Post title-->
+                        <p>Creado por: <span class="text-muted fst-italic mb-2"><a href=""  class="text-muted fst-italic mb-2" style="text-decoration:none;">{{post.autor}}</a></span> el <span class="text-muted fst-italic mb-2">{{post.creado}}</span></p>
                         <h1 class="fw-bolder mb-1">{{post.titulo}}</h1>
                         
                         <!-- Post meta content-->
                         <div class="text fst-italic mb-2">{{post.subtitulo}}</div>
-                        <!-- Post meta content-->
-                        <div class="text-muted fst-italic mb-2">{{post.creado}}</div>
                         
                         <!-- Post categories-->
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">
-                            {% for categoria in post.categorias.all %}
+                        {% for categoria in post.categorias.all %}
+                        <a class="badge bg-secondary text-decoration-none link-light" href='{% url "categoria" categoria.id %}'>
                             {{categoria.nombre}}
-                        {% endfor %}
                         </a>
+                        {% endfor %}
                     </header>
                     <!-- Preview image figure-->
                     {% if post.imagen %}
@@ -36,11 +43,13 @@
                     {% endif %}
                     <!-- Post content-->
                     <section class="mb-5">
-                        {{post.contenido}}
+                        {{post.contenido|safe}}
                     </section>
                 </article>
             </div>
             </div>
         </div>
     </div>
+
+
 {% endblock contenido %}

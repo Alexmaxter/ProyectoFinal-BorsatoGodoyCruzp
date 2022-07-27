@@ -11,7 +11,7 @@
     
     <div class="row d-flex justify-content-center" style="color: white;">
         
-        <div class="col-md-7" style=" width: 100%;">
+        <div class="col-md-7" style=" width: 50%;">
             
             <div class="card p-3 py-4 bg-dark" style="border-radius: 1rem;">
                 <div class="text-center">
@@ -28,7 +28,7 @@
                     <span>UI/UX Designer</span>
                     
                     <div class="px-4 mt-1">
-                        <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                        <p class="fonts">{{request.user.masdatosusuarios.descripcion}}</p>
                     
                     </div>
                     
@@ -47,10 +47,24 @@
                 
             </div>
             
+            
+        </div>
+        <div class="col-md-7" style=" width: 50%;">
+            
+            <div class="card p-3 py-4 bg-dark" style="border-radius: 1rem;">
+            
+            <span>Acá van los posts del usuario</span> 
+                
+                
+            </div>
+            
+            
         </div>
         
     </div>
     
 </div>
+
+
 
 {% endblock contenido %}

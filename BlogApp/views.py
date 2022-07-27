@@ -1,3 +1,4 @@
+from itertools import count
 from django.shortcuts import render,redirect
 from BlogApp.models import Post, Categoria
 from BlogApp.forms import FormularioPost, FormularioBusqueda
@@ -5,9 +6,10 @@ from django.contrib.auth.decorators import login_required
 
 def blog(request):
 
-    posts=Post.objects.all()
+    posts=Post.objects.all().order_by("-id")
     categoria = Categoria.objects.all()
-    
+
+
 
     return render(request, "BlogApp/blog.html",{'posts':posts,'categoria':categoria})
 
@@ -38,9 +40,10 @@ def crear_post(request):
                 imagen = informacion['imagen'],
             )
 
-            post.save()
+            post.autor = request.user
 
-            return redirect('BlogApp/crear_post/')
+            post.save()
+            return redirect('blog')
         
     else:
         formulario_post = FormularioPost()
@@ -57,6 +60,8 @@ def post(request, id):
 
 def buscar_post(request):
 
+    
+
     consulta = request.GET.get("titulo")
 
     if consulta:
@@ -68,3 +73,28 @@ def buscar_post(request):
     form = FormularioBusqueda()
     
     return render(request, "BlogApp/buscar_post.html", {"listado_post": listado_post, "form": form})
+
+@login_required
+def editar_post(request, id):
+
+    post = Post.objects.get(id=id)
+    
+    formulario_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
+    
+    if request.method == 'POST':
+        form = FormularioPost(request.POST, request.FILES)
+        if form.is_valid():
+            post.titulo = form.cleaned_data.get('titulo')
+            post.subtitulo = form.cleaned_data.get('subtitulo')
+            post.contenido = form.cleaned_data.get('contenido')
+            post.autor = form.cleaned_data.get('autor')
+            post.creado = form.cleaned_data.get('creado')
+            post.imagen = form.cleaned_data.get('imagen')
+            post.save()
+            
+            return redirect('buscar_post')
+        else:
+            return render(request, "BlogApp/crear_post.html", {"form": formulario_post, "post": post})
+    
+    
+    return render(request, "BlogApp/editar_post.html", {"form": formulario_post, "post": post})

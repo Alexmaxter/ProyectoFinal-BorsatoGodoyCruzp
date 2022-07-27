@@ -6,7 +6,7 @@ from BlogApp.models import Categoria
 
 
 
-class FormularioPost(forms.ModelForm):
+class FormularioPost(forms.Form):
 
     # dic_categoria = {}
 
@@ -23,7 +23,10 @@ class FormularioPost(forms.ModelForm):
     subtitulo = forms.CharField(max_length=50)
     contenido = RichTextFormField()
     imagen = forms.ImageField()
-    # categoria = forms.ChoiceField(choices=(lista_categoria))
+    #categoria = forms.ChoiceField(choices=(lista_categoria))
+    
+    class Meta:
+        autor = ('autor',)
 
 class FormularioBusqueda(forms.Form):
     titulo = forms.CharField(max_length=30, required=False)

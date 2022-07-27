@@ -7,21 +7,21 @@
 
 {% block contenido %}
 
-<center>
-    <h1>Editar Post</h1>
-    
-    <p>
-      <form action={% url 'editar_post' post.id %} method="post" enctype="multipart/form-data">
-        
+    <div class="contenedorFormulario" style="width: 90%; color:white">
+      <div >
+      <form action={% url 'editar_post' post.id %} method="post" enctype="multipart/form-data" style="text-align: left;">
+
         {% csrf_token %}
-        <table align='center'>{{form.as_table}}{{form.media}}</table>
-    
-        <br>
-        <button class="btn btn-primary" type="submit">Editar</button>
-        <a class="btn btn-primary" href={% url 'buscar_post' %}>Volver</a>
-      
+        
+        <table style="color:white; margin: 1rem auto">{{form.as_table}} {{form.media}}</table>
+        <div style="width: 90%,margin: 0 auto; text-align: center;">
+          <a class="btn btn-danger px-4 ms-3" href={% url "post" post.id %}>Cancelar</a>
+          <button class="btn btn-primary" type="submit">Editar</button>
+        </div>
       </form>
-    </p>
-    </center>
-    
+      </div>
+ 
+</div>
+
+
 {% endblock contenido %}

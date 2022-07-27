@@ -13,7 +13,7 @@
     <a class="btn btn-primary" href='{% url "buscar_post" %}' style="margin: auto 2rem; width:10rem">Buscar post</a>
 </div>
 
-
+{{post.total_post}}
 <main class="my-5">
     <div class="container">
       <!--Section: Content-->
@@ -22,10 +22,10 @@
         <div class="row">
 
             {% for post in posts %}
-            <div class="col-lg-4" style="margin: 1rem auto; ">
+            <div class="col-lg-4" style="margin: 1rem 0; ">
                 <div class="card">
-                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img  src="{{post.imagen.url}}" class="img-fluid" />
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
+                    <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%;" />
                     <a href="#!">
                       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
@@ -36,9 +36,9 @@
                         <h6 class="mall text-muted" >{{post.subtitulo}}</h6>
                     </p>
                     <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} |   
-                        {% for categoria in post.categorias.all %}
-                            {{categoria.nombre}}
-                        {% endfor %} |
+                    {% for categoria in post.categorias.all %}
+                            {{categoria.nombre}} 
+                    {% endfor %} |
                     Autor: {{post.autor}}</div>
                     <br>
                     <a class="btn btn-primary" href='{% url "post" post.id %}'>Leer más→</a>
@@ -60,14 +60,9 @@
 <section style="background-color: #212529">
     <div style="width=75%;padding:2rem; text-align:left;color: #ffffff; margin: 1rem;">
         <b>Categorias: </b>
-        {% for post in posts %}
-            {% for categoria in post.categorias.all %}
-                <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a> | 
-            {% endfor %}
+        {% for categoria in categoria.all %}
+        <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a> | 
         {% endfor %}
-
-    
-
     </div>
     <div style="background-color: #0d6efd; height: 0.2rem;"</div>
 </section>

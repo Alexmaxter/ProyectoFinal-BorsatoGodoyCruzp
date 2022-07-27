@@ -3,13 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
 from .models import MasDatosUsuarios
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login as django_login
-
 from .forms import FormularioRegistro, FormularioEditarPerfil
-from django.contrib.auth.decorators import login_required
-
+from BlogApp.models import Post
 
 # def iniciar_sesion(request):
     
@@ -145,7 +140,10 @@ def registro(request):
 
 @login_required
 def perfil(request):
-    return render (request, 'CuentaApp/perfil.html')
+
+    posts = Post.objects.all()
+
+    return render (request, 'CuentaApp/perfil.html',{'posts':posts})
 
 @login_required
 
@@ -161,6 +159,7 @@ def editar_perfil(request):
             user.first_name = data.get('first_name') if data.get('first_name') else user.first_name
             user.last_name = data.get('last_name') if data.get('last_name') else user.last_name
             user.email = data.get('email') if data.get('email') else user.email
+            mas_datos_usuarios.descripcion = data.get('descripcion') if data.get('descripcion') else user.descripcion
             mas_datos_usuarios.avatar = data.get('avatar') if data.get('avatar') else mas_datos_usuarios.avatar
             
             if data.get('password1') and data.get('password1') == data.get('password2'):
@@ -181,6 +180,7 @@ def editar_perfil(request):
             'first_name': user.first_name,
             'last_name': user.last_name,
             'avatar': mas_datos_usuarios.avatar,
+            'descripcion': mas_datos_usuarios.descripcion,
         }
     )
              
