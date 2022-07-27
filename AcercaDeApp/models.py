@@ -6,7 +6,7 @@ from django.db import models
 
 class Empleado(models.Model):
     nombre=models.CharField(max_length=50)
-    apellido=models.CharField(max_length=50)
+    last_name=models.CharField(max_length=50)
     descripcion=models.CharField(max_length=280)
     avatar=models.ImageField(upload_to='empleados')
     creado=models.DateTimeField(auto_now_add=True)

@@ -10,7 +10,6 @@
 
 <div class="contenedorFormulario">
 
-    
     {% if "valido" not in request.GET %}
         <form action="" method="POST" style="text-align: left;">
 
@@ -20,6 +19,7 @@
             <div style="text-align: center;">
             <input type="submit" value="Enviar" style="width:20%;">
             </div>
+
         </form>
     {% else %}
         <div style="width:100%;margin: 1rem auto; background-color: blue; border-radius: 1rem;">

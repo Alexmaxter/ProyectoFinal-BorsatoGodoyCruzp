@@ -7,7 +7,9 @@
 
 {% block contenido %}
 <div style="text-align: end; padding: 1rem;background-color: #212529;">
+    {% if request.user.is_authenticated %}
     <a class="btn btn-primary" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Crear post</a>
+    {% endif %}
     <a class="btn btn-primary" href='{% url "buscar_post" %}' style="margin: auto 2rem; width:10rem">Buscar post</a>
 </div>
 

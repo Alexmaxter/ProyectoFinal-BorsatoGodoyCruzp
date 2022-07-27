@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=50)),
-                ('apellido', models.CharField(max_length=50)),
+                ('last_name', models.CharField(max_length=50)),
                 ('descripcion', models.CharField(max_length=280)),
                 ('avatar', models.ImageField(upload_to='')),
                 ('creado', models.DateTimeField(auto_now_add=True)),

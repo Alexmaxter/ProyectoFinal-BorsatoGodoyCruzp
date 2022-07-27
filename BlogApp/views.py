@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from BlogApp.models import Post, Categoria
 from BlogApp.forms import FormularioPost, FormularioBusqueda
+from django.contrib.auth.decorators import login_required
 
 def blog(request):
 
     posts=Post.objects.all()
-    categoria = Categoria.objects.all().distinct("Noticias")
+    categoria = Categoria.objects.all()
     
 
     return render(request, "BlogApp/blog.html",{'posts':posts,'categoria':categoria})
@@ -18,6 +19,8 @@ def categoria(request,categoria_id):
     
     return render(request, "BlogApp/categoria.html",{'categoria':categoria,'posts':posts})
 
+
+@login_required
 def crear_post(request):
     
     if request.method == "POST":
@@ -32,8 +35,6 @@ def crear_post(request):
                 titulo = informacion['titulo'],
                 subtitulo = informacion['subtitulo'],
                 contenido = informacion['contenido'],
-                #autor = informacion['autor'],
-                #fecha_creacion = informacion['fecha_creacion'],
                 imagen = informacion['imagen'],
             )
 

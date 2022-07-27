@@ -53,16 +53,27 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link  {% if request.path == "/tienda/" %}active{% endif %}" href={% url 'tienda' %}>TIENDA</a>
-            </li>
-
-            <li class="nav-item">
               <a class="nav-link  {% if request.path|slice:'6' == "/blog/" %}active{% endif %}"  href={% url 'blog' %}>BLOG</a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link  {% if request.path == "/contacto/" %}active{% endif %}"  href={% url 'contacto' %}>CONTACTO</a>
             </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href={% url 'perfil' %} style="text-transform: uppercase;" >
+              {% if request.user.masdatosusuarios.avatar %}
+              <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:30px;width:30px;"  alt=""class="border border-success">
+              {% else %}
+              <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;border: 1px; height:30px;width:30px;" alt="" class="border border-success;">
+              {% endif %}
+              {{request.user.username}}
+              
+            </a>
+          </li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href={% url 'iniciar_sesion' %}>INICIAR SESIÓN</a></li>
+            <li class="nav-item"><a class="nav-link" href={% url 'registro' %}>REGISTRARSE</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

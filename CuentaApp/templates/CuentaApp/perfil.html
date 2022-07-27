@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Perfil - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="container mt" style="margin: 4rem auto;">
+    
+    <div class="row d-flex justify-content-center" style="color: white;">
+        
+        <div class="col-md-7" style=" width: 100%;">
+            
+            <div class="card p-3 py-4 bg-dark" style="border-radius: 1rem;">
+                <div class="text-center">
+                    {% if request.user.masdatosusuarios.avatar %}
+                        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%; height:250px;width:250px;"  alt="" class="border border-success">
+                    {% else %}
+                        <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;height:250px;width:250px;"    alt="" class="border border-success">
+                    {% endif %}
+                </div>
+                
+                <div class="text-center mt-3">
+                    <span class="bg-secondary p-1 px-4 rounded text-white" style="text-transform: capitalize;">@{{request.user.username}}</span>
+                    <h5 class="mt-2 mb-0">{{request.user.first_name}} {{request.user.last_name}}</h5>
+                    <span>UI/UX Designer</span>
+                    
+                    <div class="px-4 mt-1">
+                        <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    
+                    </div>
+                    
+                    <div class="buttons">
+                        
+                        <button class="btn btn-outline-primary px-4">Enviar Mensaje</button>
+                        <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %}>Editar perfil</a>
+                        <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %}>Salir</a>
+                    </div>
+                    
+                    
+                </div>
+                
+               
+                
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock contenido %}

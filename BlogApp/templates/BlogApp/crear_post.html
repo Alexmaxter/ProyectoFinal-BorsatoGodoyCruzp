@@ -6,19 +6,23 @@
 {% endblock titulo %}
 
 {% block contenido %}
-
 <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
-<p>
 
-    <form action={% url 'crear_post' %} method="post" enctype="multipart/form-data">
-
-      {% csrf_token %}
-      
-      <table>{{form.as_table}} {{form.media}}</table>
   
-      <center><button class="btn btn-primary" href="#about">Crear</button></center>
-    </form>
 
-</p>
-  
+<div class="contenedorFormulario" style="width: 90%; color:white">
+      <div >
+      <form action={% url 'crear_post' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+
+        {% csrf_token %}
+        
+        <table style="color:white; margin: 1rem auto">{{formulario_post.as_table}} {{formulario_post.media}}</table>
+        <div style="width: 90%,margin: 0 auto; text-align: center;">
+          <button class="btn btn-primary" href="#about">Crear post</button>
+          <a class="btn btn-danger px-4 ms-3" href={% url 'blog' %}>Cancelar</a>
+        </div>
+      </form>
+      </div>
+ 
+</div>
 {% endblock contenido %}

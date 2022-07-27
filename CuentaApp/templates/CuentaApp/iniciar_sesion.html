@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Iniciar sesión - LibreríaCoder</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+
+<div style="background-color: #212529; color: #ffffff; border-radius: 1rem; height: 25%;" class="contenedorFormulario">
+  
+    <form action={% url 'iniciar_sesion' %} method="post" style=" text-align: right;">
+        {% csrf_token %}
+
+            <div style="width:100%;">
+                <table style="margin: 0 auto;">
+                    {{form_login.as_table}}
+                </table>
+            </div>
+
+            <button class="btn btn-primary" style=" text-align: center; width: 100%; margin: 1rem 0rem 0;">Iniciar Sesion</button>
+    </form>
+</div>
+
+
+{% endblock contenido %}
+
