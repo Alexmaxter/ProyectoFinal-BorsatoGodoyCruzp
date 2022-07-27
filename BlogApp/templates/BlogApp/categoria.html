@@ -11,7 +11,7 @@
 <section style="background-color: #212529">
     <div style="padding:2rem;text-align:left;color: #ffffff;  display: flex;align-items: center;">
     
-       <button type="button" class="btn btn-primary"><a href='{% url "blog" %}' style="text-decoration: none;color:white; index: -30;">Atras</a></button>
+       <button type="button" class="btn btn-primary"><a onclick="history.back()" style="text-decoration: none;color:white; index: -30;">Atras</a></button>
        <h1 style="padding-left: 1rem;margin-bottom: 0;">{{categoria.nombre}}</h1>
     
     </div>
@@ -20,44 +20,53 @@
 
 
 <main class="my-5">
-    <div class="container">
-      <!--Section: Content-->
-      <section class="text-left">
+  <div class="container" >
+    <!--Section: Content-->
+    <section class="text-left">
 
-        <div class="row">
+      <div class="row">
 
-            {% for post in posts %}
-            <div class="col-lg-4" style="margin: 1rem auto; ">
-                <div class="card">
-                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img  src="{{post.imagen.url}}" class="img-fluid" />
-                    <a href="#!">
-                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">{{post.titulo}}</h5>
-                    <p class="card-text">
-                        <h6 class="mall text-muted" >{{post.subtitulo}}</h6>
-                    </p>
-                    <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} |   
+          {% for post in posts %}
+          <div class="col-lg-4" style="margin: 1rem 0; ">
+              <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
+                  <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%;" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title" style="margin: 0;">{{post.titulo}}</h5>
+                  <p class="card-text">
+                      <h6 class="mall text-muted"style="margin: 0;" >{{post.subtitulo}}</h6>
+                  </p>
+                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: {{post.autor}} </div>  
+                  
+                  <div style="margin: 1rem auto;">
+                    {% if post.categorias.all %}
                     {% for categoria in post.categorias.all %}
-                            {{categoria.nombre}} 
-                    {% endfor %} |
-                    Autor: {{post.autor}}</div>
-                    <br>
-                    <a class="btn btn-primary" href='{% url "post" post.id %}'>Leer más→</a>
-                    
+                    <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                      <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a>    
+                          </div> 
+                    {% endfor %}
+                    {% else %}
+                    <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                     Sin categoria
+                    </div> 
+                          {% endif %}
                   </div>
+                  <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%">Leer más</a>
+                  
                 </div>
               </div>
-              
-              {% endfor %}
-              
-        </div>
-      </section>
-      <!--Section: Content-->
-    </div>
-  </main>
+            </div>
+            
+            {% endfor %}
+            
+      </div>
+    </section>
+    <!--Section: Content-->
+  </div>
+</main>
 
 {% endblock contenido %}

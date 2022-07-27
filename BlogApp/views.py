@@ -70,31 +70,40 @@ def buscar_post(request):
     else:
         listado_post = Post.objects.all()
 
-    form = FormularioBusqueda()
+    formulario_busqueda = FormularioBusqueda()
     
-    return render(request, "BlogApp/buscar_post.html", {"listado_post": listado_post, "form": form})
+    return render(request, "BlogApp/buscar_post.html" , {"listado_post": listado_post, "formulario_busqueda": formulario_busqueda})
 
 @login_required
 def editar_post(request, id):
 
     post = Post.objects.get(id=id)
     
-    formulario_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
+    formulario_editar_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
     
     if request.method == 'POST':
-        form = FormularioPost(request.POST, request.FILES)
-        if form.is_valid():
-            post.titulo = form.cleaned_data.get('titulo')
-            post.subtitulo = form.cleaned_data.get('subtitulo')
-            post.contenido = form.cleaned_data.get('contenido')
-            post.autor = form.cleaned_data.get('autor')
-            post.creado = form.cleaned_data.get('creado')
-            post.imagen = form.cleaned_data.get('imagen')
+        formulario_editar_post = FormularioPost(request.POST, request.FILES)
+        if formulario_editar_post.is_valid():
+            post.titulo = formulario_editar_post.cleaned_data.get('titulo')
+            post.subtitulo = formulario_editar_post.cleaned_data.get('subtitulo')
+            post.contenido = formulario_editar_post.cleaned_data.get('contenido')
+            post.autor = formulario_editar_post.cleaned_data.get('autor')
+            post.creado = formulario_editar_post.cleaned_data.get('creado')
+            post.imagen = formulario_editar_post.cleaned_data.get('imagen')
+            
             post.save()
             
             return redirect('buscar_post')
         else:
-            return render(request, "BlogApp/crear_post.html", {"form": formulario_post, "post": post})
+            return render(request, "BlogApp/crear_post.html", {"formulario_editar_post": formulario_editar_post, "post": post})
     
     
-    return render(request, "BlogApp/editar_post.html", {"form": formulario_post, "post": post})
+    return render(request, "BlogApp/editar_post.html", {"formulario_editar_post": formulario_editar_post, "post": post})
+
+@login_required
+def eliminar_post(request, id):
+    
+    post = Post.objects.get(id=id)
+    post.delete()
+    
+    return redirect('blog')

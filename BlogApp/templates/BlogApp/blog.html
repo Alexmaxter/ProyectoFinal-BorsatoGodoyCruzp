@@ -13,9 +13,8 @@
     <a class="btn btn-primary" href='{% url "buscar_post" %}' style="margin: auto 2rem; width:10rem">Buscar post</a>
 </div>
 
-{{post.total_post}}
 <main class="my-5">
-    <div class="container">
+    <div class="container" >
       <!--Section: Content-->
       <section class="text-left">
 
@@ -31,17 +30,26 @@
                     </a>
                   </div>
                   <div class="card-body">
-                    <h5 class="card-title">{{post.titulo}}</h5>
+                    <h5 class="card-title" style="margin: 0;">{{post.titulo}}</h5>
                     <p class="card-text">
-                        <h6 class="mall text-muted" >{{post.subtitulo}}</h6>
+                        <h6 class="mall text-muted"style="margin: 0;" >{{post.subtitulo}}</h6>
                     </p>
-                    <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} |   
-                    {% for categoria in post.categorias.all %}
-                            {{categoria.nombre}} 
-                    {% endfor %} |
-                    Autor: {{post.autor}}</div>
-                    <br>
-                    <a class="btn btn-primary" href='{% url "post" post.id %}'>Leer más→</a>
+                    <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: {{post.autor}} </div>  
+                    
+                    <div style="margin: 1rem auto;">
+                      {% if post.categorias.all %}
+                      {% for categoria in post.categorias.all %}
+                      <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                        <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a>    
+                            </div> 
+                      {% endfor %}
+                      {% else %}
+                      <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                       Sin categoria
+                      </div> 
+                            {% endif %}
+                    </div>
+                    <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%">Leer más</a>
                     
                   </div>
                 </div>

@@ -5,17 +5,90 @@
 {% endblock titulo %}
 {% block contenido %}
 
+<div class="container mt-5" style="background-color: #212529; padding:2rem; margin-bottom: 2rem;">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article style="color:white">
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h6 class="fw-bolder mb-1">Último post</h6>
+                    <h1 class="fw-bolder mb-1">{{ultimo_post.titulo}}</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por {{ultimo_post.autor}}</div>                    
+                    <!-- Post categories-->
 
-<div style="width: 15%;">
-<div style="color: white; border-radius: 1rem; margin: 1rem;"class="bg-dark">
-    <div style="padding:1rem;">
-        <h5>Usuarios:</h5>
-    {% for user in users %}
-    <p style="margin-bottom: 0; text-transform: capitalize;">
-        {{user.username}}
-    </p>
-    {% endfor %}
+                    {% if ultimo_post.categorias.all%}
+
+                        {% for categoria in ultimo_post.categorias.all %}
+                       
+                        <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                            {{categoria.nombre}} 
+                        </div> 
+                       
+                        {% endfor %}
+                    {% else %}
+
+                        <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                            Sin categoria 
+                        </div> 
+                    {% endif %}
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{ultimo_post.imagen.url}}" style="height: 400px; width:900px; object-fit: cover; width:100%;" alt="..." /></figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                   {{ultimo_post.contenido|safe}}
+                </section>
+            </article>
+            
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+            <!-- Search widget-->
+            <div class="card mb-4" >
+                <div class="card-header">Buscar</div>
+                <div class="card-body"style="align-self:center">
+                        <form action={% url 'buscar_post' %} style="margin-right: 1rem ; color:white;" enctype="multipart/form-data">
+        
+                            {{formulario_busqueda}}
+                            <button class="btn btn-primary" id="button-search" type="button">Buscar</button>
+                            
+                        </form>
+                    </div>
+                </div>
+                    
+
+           
+            <!-- Categories widget-->
+            <div class="card mb-4">
+                <div class="card-header">Categorias </div>
+                <div class="card-body">
+                    
+                        
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                {% for categoria in categoria.all %}
+                                    <a href='{% url "categoria" categoria.id %}'class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;"  style="text-decoration:none;color:white;">{{categoria.nombre}}</a>
+                                {% endfor %}</li>
+                            </ul>
+                    
+                
+                </div>
+            </div>
+            <!-- Side widget-->
+            <div class="card mb-4">
+                <div class="card-header">Usuarios registrados: <span class="badge bg-primary text-decoration-none link-light" style="border-radius: 25%">{{total_usuarios}}</span></div>
+                <div class="card-body">{% for user in users %}
+                    <p style="margin-bottom: 0; text-transform: capitalize;">
+                        {{user.username}}
+                    </p>
+                    {% endfor %}</div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
+
+
 {% endblock contenido %}

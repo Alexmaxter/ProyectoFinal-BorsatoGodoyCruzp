@@ -9,8 +9,8 @@
 
 <div class="container mt-5" style="background-color: #212529; padding:1rem;">
     <div class="row"> 
-    <div style="margin: 0 auto; width:40%;">
-        <a class="btn btn-danger" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Borrar post</a>
+    <div style="margin: 0 auto; text-align: center;">
+        <a class="btn btn-danger" href='{% url "eliminar_post" post.id %}' style="margin: auto; width:10rem">Borrar post</a>
         <a class="btn btn-primary" href='{% url "editar_post" post.id  %}' style="width:10rem">Editar post</a>
 </div>
     </div>
@@ -24,7 +24,7 @@
                     <!-- Post header-->
                     <header class="mb-4" >
                         <!-- Post title-->
-                        <p>Creado por: <span class="text-muted fst-italic mb-2"><a href=""  class="text-muted fst-italic mb-2" style="text-decoration:none;">{{post.autor}}</a></span> el <span class="text-muted fst-italic mb-2">{{post.creado}}</span></p>
+                        <div class="text-muted fst-italic mb-2">Publicado el {{post.creado.day}}/{{post.creado.month}}/{{post.creado.year}} por {{post.autor}}</div>                        
                         <h1 class="fw-bolder mb-1">{{post.titulo}}</h1>
                         
                         <!-- Post meta content-->
