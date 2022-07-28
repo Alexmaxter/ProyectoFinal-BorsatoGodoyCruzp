@@ -6,11 +6,11 @@
 {% endblock titulo %}
 
 {% block contenido %}
-<div style="text-align: end; padding: 1rem;background-color: #212529;">
+<div  style="text-align: right; margin: 1rem 6rem 1rem 1rem"class=" bg-light">
     {% if request.user.is_authenticated %}
     <a class="btn btn-primary" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Crear post</a>
     {% endif %}
-    <a class="btn btn-primary" href='{% url "buscar_post" %}' style="margin: auto 2rem; width:10rem">Buscar post</a>
+    <a class="btn btn-primary" href='{% url "buscar_post" %}' style="width:10rem">Buscar post</a>
 </div>
 
 <main class="my-5">
@@ -24,7 +24,7 @@
             <div class="col-lg-4" style="margin: 1rem 0; ">
                 <div class="card">
                   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
-                    <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%;" />
+                    <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
                     <a href="#!">
                       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
@@ -34,7 +34,7 @@
                     <p class="card-text">
                         <h6 class="mall text-muted"style="margin: 0;" >{{post.subtitulo}}</h6>
                     </p>
-                    <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: {{post.autor}} </div>  
+                    <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: <a href='{% url "perfil_usuario" post.autor.id %}'><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>  
                     
                     <div style="margin: 1rem auto;">
                       {% if post.categorias.all %}
@@ -65,14 +65,13 @@
 
 
 
-<section style="background-color: #212529">
-    <div style="width=75%;padding:2rem; text-align:left;color: #ffffff; margin: 1rem;">
+<section class="navbar-light bg-light">
+    <div style="width=75%; text-align:left; margin: 1rem 1rem 1rem 6rem;">
         <b>Categorias: </b>
         {% for categoria in categoria.all %}
-        <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a> | 
+            <a href='{% url "categoria" categoria.id %}'class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;"  style="text-decoration:none;color:white;">{{categoria.nombre}}</a>
         {% endfor %}
     </div>
-    <div style="background-color: #0d6efd; height: 0.2rem;"</div>
 </section>
 
 {% endblock contenido %}

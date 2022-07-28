@@ -5,18 +5,21 @@
 {% endblock titulo %}
 {% block contenido %}
 
-<div class="container mt-5" style="background-color: #212529; padding:2rem; margin-bottom: 2rem;">
-    <div class="row">
-        <div class="col-lg-8">
+<div class="container mt-5  bs-light" style="  padding:2rem; margin-bottom: 2rem;">
+    <div class="row" >
+        <div class="col-lg-8 contenedorFormulario"style="background-color: white;padding:2rem;">
             <!-- Post content-->
-            <article style="color:white">
+
+            {% if ultimo_post %}
+            <article >
                 <!-- Post header-->
-                <header class="mb-4">
+
+                <header class="mb-4 ">  
                     <!-- Post title-->
                     <h6 class="fw-bolder mb-1">Último post</h6>
-                    <h1 class="fw-bolder mb-1">{{ultimo_post.titulo}}</h1>
+                    <a href='{% url "post" ultimo_post.id %}' style="text-decoration:none;"><span class="TituloPost">{{ultimo_post.titulo}}</span></a>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por {{ultimo_post.autor}}</div>                    
+                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por <a href='{% url "perfil_usuario" ultimo_post.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{ultimo_post.autor}}</span> </a></div>                    
                     <!-- Post categories-->
 
                     {% if ultimo_post.categorias.all%}
@@ -43,19 +46,25 @@
                 </section>
             </article>
             
+            {% endif %}
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
             <!-- Search widget-->
             <div class="card mb-4" >
                 <div class="card-header">Buscar</div>
-                <div class="card-body"style="align-self:center">
-                        <form action={% url 'buscar_post' %} style="margin-right: 1rem ; color:white;" enctype="multipart/form-data">
-        
-                            {{formulario_busqueda}}
-                            <button class="btn btn-primary" id="button-search" type="button">Buscar</button>
-                            
-                        </form>
+                <div class="card-body">    
+                      
+                        <form action="{% url 'buscar_post' %}" method="post">
+                            {% csrf_token %}
+                            {% for field in formulario_busqueda %}
+                              <label for="{{ field.name }}"></label>
+                              {{ field }}
+                              <button class="btn btn-primary" style="float: right;"id="button-search" type="button">Buscar</button>
+                           
+                            {% endfor %}
+                        
+                          
                     </div>
                 </div>
                     
@@ -81,9 +90,7 @@
             <div class="card mb-4">
                 <div class="card-header">Usuarios registrados: <span class="badge bg-primary text-decoration-none link-light" style="border-radius: 25%">{{total_usuarios}}</span></div>
                 <div class="card-body">{% for user in users %}
-                    <p style="margin-bottom: 0; text-transform: capitalize;">
-                        {{user.username}}
-                    </p>
+                    <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{user.username}}</span> </a>
                     {% endfor %}</div>
             </div>
         </div>

@@ -8,19 +8,19 @@
 {% block contenido %}
 
 
-<div class="contenedorFormulario">
+<div class="contenedorFormulario" style="width: 50%; padding: 2rem; margin: 0 auto;">
 
+    <h1>Contacto</h1>
     {% if "valido" not in request.GET %}
-        <form action="" method="POST" style="text-align: left;">
-
-            {% csrf_token %}
-            <table style="color:white; margin: 1rem auto">{{formulario_contacto.as_table}}</table>
-
+        
+        <form action={% url 'buscar_post' %}  enctype="multipart/form-data">
+      
+            <div style="margin:2rem auto">
+            {{formulario_contacto}}</div>
             <div style="text-align: center;">
-            <input type="submit" value="Enviar" style="width:20%;"  class="btn btn-primary">
-            </div>
-
-        </form>
+                <input type="submit" value="Enviar" style="width:20%;"  class="btn btn-primary">
+                </div>
+          </form>
     {% else %}
         <div style="width:100%;margin: 1rem auto; background-color: blue; border-radius: 1rem;">
             <p style="color: white; padding: 0.5rem; text-align: center;">¡Información enviada correctamente!</p>

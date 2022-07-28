@@ -6,16 +6,18 @@
 {% endblock titulo %}
 
 {% block contenido %}
-<div style="text-align: end; padding: 1rem;background-color: #212529;">
+<div style="text-align: left; padding: 1rem 6rem 1rem 6rem" class=" bg-light">
     
    
-    <form action={% url 'buscar_post' %} style="margin-right: 1rem ; color:white;" enctype="multipart/form-data">
-        
-        {{formulario_busqueda}}
-        <button>Buscar</button>
-        
-        <a class="btn btn-primary" href={% url 'blog' %} style="margin: auto 1rem;">Volver al blog</a>
+    <form action={% url 'buscar_post' %}  enctype="multipart/form-data">
+      
+      <div style="margin:2rem auto">
+      {{formulario_busqueda}}</div>
+      <button class="btn btn-primary">Buscar</button>
+      
+      <a class="btn btn-primary" href={% url 'blog' %} style="width:10rem;float:right">Volver al blog</a>
     </form>
+    
 </div> 
 
 {% if listado_post %}
@@ -32,7 +34,7 @@
           <div class="col-lg-4" style="margin: 1rem 0; ">
               <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
-                  <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%;" />
+                  <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
                   <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                   </a>
@@ -45,18 +47,18 @@
                   <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: {{post.autor}} </div>  
                   
                   <div style="margin: 1rem auto;">
-                  {% if post.categorias.all %}
-                  {% for categoria in post.categorias.all %}
-                  <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                          {{categoria.nombre}} 
-                        </div> 
-                  {% endfor %}
-                  {% else %}
-                  <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                   Sin categoria
-                  </div> 
-                        {% endif %}
-                </div>
+                    {% if post.categorias.all %}
+                    {% for categoria in post.categorias.all %}
+                    <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                      <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a>    
+                          </div> 
+                    {% endfor %}
+                    {% else %}
+                    <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                     Sin categoria
+                    </div> 
+                          {% endif %}
+                  </div>
                   <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%">Leer más</a>
                   
                 </div>

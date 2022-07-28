@@ -8,8 +8,8 @@
 {% block contenido %}
 
 
-<section style="background-color: #212529">
-    <div style="padding:2rem;text-align:left;color: #ffffff;  display: flex;align-items: center;">
+<section  class=" bg-light">
+    <div style="padding:2rem 2rem 2rem 6rem;text-align:left;  display: flex;align-items: center;">
     
        <button type="button" class="btn btn-primary"><a onclick="history.back()" style="text-decoration: none;color:white; index: -30;">Atras</a></button>
        <h1 style="padding-left: 1rem;margin-bottom: 0;">{{categoria.nombre}}</h1>
@@ -30,7 +30,7 @@
           <div class="col-lg-4" style="margin: 1rem 0; ">
               <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
-                  <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%;" />
+                  <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
                   <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                   </a>
@@ -40,7 +40,7 @@
                   <p class="card-text">
                       <h6 class="mall text-muted"style="margin: 0;" >{{post.subtitulo}}</h6>
                   </p>
-                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: {{post.autor}} </div>  
+                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: <span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </div>  
                   
                   <div style="margin: 1rem auto;">
                     {% if post.categorias.all %}

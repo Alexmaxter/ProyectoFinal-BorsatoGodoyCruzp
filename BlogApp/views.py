@@ -1,4 +1,3 @@
-from itertools import count
 from django.shortcuts import render,redirect
 from BlogApp.models import Post, Categoria
 from BlogApp.forms import FormularioPost, FormularioBusqueda
@@ -63,12 +62,13 @@ def buscar_post(request):
     
 
     consulta = request.GET.get("titulo")
+    
 
     if consulta:
         listado_post = Post.objects.filter(titulo__icontains=consulta)
 
     else:
-        listado_post = Post.objects.all()
+        listado_post = Post.objects.all().order_by("-id")
 
     formulario_busqueda = FormularioBusqueda()
     
@@ -107,3 +107,4 @@ def eliminar_post(request, id):
     post.delete()
     
     return redirect('blog')
+

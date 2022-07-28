@@ -9,11 +9,11 @@
 
 <div class="container mt" style="margin: 4rem auto;">
     
-    <div class="row d-flex justify-content-center" style="color: white;">
+    <div class="row d-flex justify-content-center">
         
         <div class="col-md-7" style=" width: 100%;">
             
-            <div class="card p-3 py-4 bg-dark" style="border-radius: 1rem;">
+            <div class="card p-3 py-4 bg-ligh" style="border-radius: 1rem;">
                 <form action={% url 'editar_perfil' %} method="post" enctype='multipart/form-data'>
                     {% csrf_token %}
                     <table>

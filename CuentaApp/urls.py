@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.urls import path
-from .views import iniciar_sesion, perfil, registro, editar_perfil
+from .views import iniciar_sesion, perfil, registro, editar_perfil, perfil_usuario
 from django.contrib.auth.views import LogoutView
 from django.conf.urls.static import static
 
@@ -9,6 +9,7 @@ urlpatterns = [
     path('registro/', registro, name='registro'),
     path('cerrar_sesion/', LogoutView.as_view(template_name='CuentaApp/cerrar_sesion.html'), name='cerrar_sesion'),
     path('perfil/', perfil, name='perfil'),
+    path('perfil_usuario/<int:id>/', perfil_usuario, name='perfil_usuario'),
     path('perfil/editar', editar_perfil, name='editar_perfil'),
 ]
 

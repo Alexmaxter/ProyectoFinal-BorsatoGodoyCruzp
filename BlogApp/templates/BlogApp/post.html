@@ -7,24 +7,25 @@
 
 {% block contenido %}
 
-<div class="container mt-5" style="background-color: #212529; padding:1rem;">
+<div class="container mt-5 " style="padding:2rem 2rem 2rem 6rem;text-align:left; background-color: white;">
     <div class="row"> 
-    <div style="margin: 0 auto; text-align: center;">
+    <div style="padding: 0rem 6rem 0rem 6rem; text-align: center;">
         <a class="btn btn-danger" href='{% url "eliminar_post" post.id %}' style="margin: auto; width:10rem">Borrar post</a>
         <a class="btn btn-primary" href='{% url "editar_post" post.id  %}' style="width:10rem">Editar post</a>
 </div>
     </div>
     </div>
     <!-- Page content-->
-    <div class="container mt-5" style="background-color: #212529; padding:2rem; margin-bottom: 2rem;">
+    <div class="container mt-5 bg-light" style=" padding:2rem; margin-bottom: 2rem;">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="background-color: white;">
                 <!-- Post content-->
-                <article style="color:white;">
+                <article >
                     <!-- Post header-->
                     <header class="mb-4" >
                         <!-- Post title-->
-                        <div class="text-muted fst-italic mb-2">Publicado el {{post.creado.day}}/{{post.creado.month}}/{{post.creado.year}} por {{post.autor}}</div>                        
+                        <br>
+                        <div class="text-muted fst-italic mb-2">Publicado el {{post.creado.day}}/{{post.creado.month}}/{{post.creado.year}} por <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>                        
                         <h1 class="fw-bolder mb-1">{{post.titulo}}</h1>
                         
                         <!-- Post meta content-->

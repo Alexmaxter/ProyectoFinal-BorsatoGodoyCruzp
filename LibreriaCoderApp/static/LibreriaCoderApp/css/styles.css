@@ -2193,6 +2193,7 @@ progress {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
+  margin: 1rem 0rem 0rem 0rem;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -11292,15 +11293,31 @@ textarea.form-control-lg {
 }
 
 body {
-  background: url("../assets/img/Fondo.jpg") no-repeat center center fixed;
-  background-size: cover;
+  /* background: url("../assets/img/Fondo.jpg") no-repeat center center fixed; */
+  background-color: #f8f9fa;
 }
 
 .contenedorFormulario{
-  background-color: #212529;
-  width: 50%;
-  padding: 2rem;
-  margin: 2rem auto;
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dee2e6;
 
   border-radius: 0.5rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500;600;700&display=swap');
+
+.TituloPost{
+  font-family: 'Fugaz One', Cursive;
+  font-weight: 400;
+  font-size: 2rem;
+  color: #343a40;
+}
+
+.Logo{
+  font-family: 'Fugaz One', Cursive;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #343a40;
 }
