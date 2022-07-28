@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
 from .models import MasDatosUsuarios
 from django.contrib.auth.decorators import login_required
-from .forms import FormularioRegistro, FormularioEditarPerfil
+from .forms import FormularioInicioSesion, FormularioRegistro, FormularioEditarPerfil
 from BlogApp.models import Post
 
 # def iniciar_sesion(request):
@@ -105,7 +105,7 @@ from BlogApp.models import Post
 
 def iniciar_sesion(request):
     if request.method == 'POST':
-        form_login = AuthenticationForm(request, data=request.POST)
+        form_login = FormularioInicioSesion(request, data=request.POST)
         
         if form_login.is_valid():
             username = form_login.cleaned_data.get('username')
@@ -115,6 +115,8 @@ def iniciar_sesion(request):
         
             if user is not None:
                 django_login (request, user)
+                
+                return redirect('inicio')
                 return render (request, 'CuentaApp/iniciar_sesion.html', {})
             else:
                 return render(request, 'CuentaApp/iniciar_sesion.html', {'form_login': form_login})
@@ -122,7 +124,7 @@ def iniciar_sesion(request):
             return render(request, 'CuentaApp/iniciar_sesion.html', {'form_login': form_login})
             
     
-    form_login = AuthenticationForm()
+    form_login = FormularioInicioSesion()
     return render(request, 'CuentaApp/iniciar_sesion.html', {'form_login': form_login})
 
 
@@ -142,7 +144,7 @@ def registro(request):
 def perfil(request):
 
     posts = Post.objects.all()
-
+    
     return render (request, 'CuentaApp/perfil.html',{'posts':posts})
 
 @login_required
@@ -189,5 +191,6 @@ def editar_perfil(request):
 def perfil_usuario(request, id):
 
     usuario = MasDatosUsuarios.objects.get(id=id)
+    posts = Post.objects.all()
 
-    return render (request, 'CuentaApp/perfil_usuario.html', {'usuario':usuario})
+    return render (request, 'CuentaApp/perfil_usuario.html', {'usuario':usuario,"posts":posts})

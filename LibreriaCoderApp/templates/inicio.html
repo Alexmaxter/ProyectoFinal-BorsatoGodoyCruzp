@@ -5,6 +5,7 @@
 {% endblock titulo %}
 {% block contenido %}
 
+{% comment %} <h2 class="fw-bolder TituloPost">Último post</h2> {% endcomment %}
 <div class="container mt-5  bs-light" style="  padding:2rem; margin-bottom: 2rem;">
     <div class="row" >
         <div class="col-lg-8 contenedorFormulario"style="background-color: white;padding:2rem;">
@@ -16,12 +17,12 @@
 
                 <header class="mb-4 ">  
                     <!-- Post title-->
-                    <h6 class="fw-bolder mb-1">Último post</h6>
+                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por <a href='{% url "perfil_usuario" ultimo_post.autor.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{ultimo_post.autor}}</span> </a></div>                    
                     <a href='{% url "post" ultimo_post.id %}' style="text-decoration:none;"><span class="TituloPost">{{ultimo_post.titulo}}</span></a>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por <a href='{% url "perfil_usuario" ultimo_post.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{ultimo_post.autor}}</span> </a></div>                    
                     <!-- Post categories-->
-
+                    <br>
+                    <div class="text fst-italic mb-2">{{ultimo_post.subtitulo}}</div>
                     {% if ultimo_post.categorias.all%}
 
                         {% for categoria in ultimo_post.categorias.all %}

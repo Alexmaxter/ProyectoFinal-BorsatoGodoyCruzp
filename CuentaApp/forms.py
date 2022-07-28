@@ -24,14 +24,22 @@
 #     clave_2 = forms.CharField(label='Repetir Contraseña', widget=forms.PasswordInput, required=False)
 #     avatar = forms.ImageField(required=False)
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
+
+class FormularioInicioSesion(AuthenticationForm):
+    username = UsernameField(label=False,widget=forms.TextInput(attrs={"autofocus": True,'class': 'form-control','placeholder': 'Nombre de usuario'}))
+    password = forms.CharField(label=False, strip=False, widget=forms.PasswordInput(attrs={"autocomplete": "current-password",'class': 'form-control','placeholder': 'Contraseña'}),)
+
+    def __init__(self, *args, **kwargs):
+        super(FormularioInicioSesion, self).__init__(*args, **kwargs)
+
 class FormularioRegistro(UserCreationForm):
     
-    username=forms.CharField(label='Usuario', max_length=30)
-    email= forms.EmailField()
-    password1= forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2= forms.CharField(label='Repetir Contraseña', widget=forms.PasswordInput)
+    username=forms.CharField(label=False, max_length=30, widget=forms.TextInput(attrs={'class': 'form-control','placeholder': 'Nombres de usuario'}))
+    email= forms.EmailField(label=False,widget=forms.TextInput(attrs={'class': 'form-control','placeholder': 'Email'}))
+    password1= forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder': 'Contraseña'}))
+    password2= forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder': 'Contraseña'}))
     
     
     class Meta:

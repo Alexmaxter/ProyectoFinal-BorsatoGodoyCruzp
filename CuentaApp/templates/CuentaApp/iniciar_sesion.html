@@ -7,22 +7,31 @@
 
 {% block contenido %}
 
+<div class="contenedorFormulario" style="width: 30%; padding: 2rem; margin: 0 auto;">
 
-<div style="background-color: #212529; color: #ffffff; border-radius: 1rem; height: 25%;" class="contenedorFormulario">
-  
+    <div style="text-align: center;margin: 2rem 0rem 2rem 0rem;">
+        <img src="{% static 'LibreriaCoderApp/assets/img/IniciarSesion.jpg' %}" alt="" style="width:60%">
+    </div>
+    <span class="TituloPost" style="margin:auto 0">Iniciar sesión</span>
     <form action={% url 'iniciar_sesion' %} method="post" style=" text-align: right;">
-        {% csrf_token %}
 
-            <div style="width:100%;">
-                <table style="margin: 0 auto;">
-                    {{form_login.as_table}}
-                </table>
+        {% csrf_token %}
+            
+            <div  style="margin:2rem auto">
+                {{form_login.as_table}}    
+                <div class='form-group'>
+                        <label for="{{ field.name }}">{{ field.label }}</label>
+                        {{ field }}
+                      </div>
+                <div style="text-align: center; margin: 0rem 2rem 0rem 2rem;">
+                    <button class="btn btn-primary"  style="text-align: center;"  >Iniciar sesión</button>
+                    </div>
             </div>
 
-            <button class="btn btn-primary" style=" text-align: center; width: 100%; margin: 1rem 0rem 0;">Iniciar Sesion</button>
     </form>
+    
+   
 </div>
-
 
 {% endblock contenido %}
 

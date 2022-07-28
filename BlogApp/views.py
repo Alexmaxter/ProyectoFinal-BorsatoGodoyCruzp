@@ -27,11 +27,12 @@ def crear_post(request):
     if request.method == "POST":
         
         formulario_post = FormularioPost(request.POST, request.FILES)
-    
+
         if formulario_post.is_valid():
             
             informacion = formulario_post.cleaned_data
-            
+
+
             post = Post(
                 titulo = informacion['titulo'],
                 subtitulo = informacion['subtitulo'],
@@ -39,9 +40,12 @@ def crear_post(request):
                 imagen = informacion['imagen'],
             )
 
+            categorias = Categoria.objects.get(nombre=informacion['pk']) 
             post.autor = request.user
+            categorias.pk.add(FormularioPost)
 
             post.save()
+
             return redirect('blog')
         
     else:

@@ -2,27 +2,29 @@
 {% load static %}
 
 {% block titulo %}
-<title>Crear post - LibreríaCoder</title>
+<title>Editar post - LibreríaCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
 
-    <div class="contenedorFormulario" style="width: 90%">
-      <h1>Editar post</h1>
+    <div class="contenedorFormulario" style="margin: 2rem 12rem 2rem 12rem;">
+      <div style="padding: 2rem 6rem 0rem 4rem;">
+      <span class="TituloPost" style="margin:auto 0">Editar post</span>
+      </div>
       <form action={% url 'editar_post' post.id %} method="post" enctype="multipart/form-data" style="text-align: left;">
         
-        {% csrf_token %}
         
         <table style="margin: 1rem auto">
+          {% csrf_token %}
           {{formulario_editar_post.as_table}} {{formulario_editar_post.media}}
         </table>
-        <div style="width: 90%,margin: 0 auto; text-align: center;">
+        <div style="width: 90%;margin: 2rem; text-align: center;">
           
           <a class="btn btn-danger px-4 ms-3" href={% url "post" post.id %}>Cancelar</a>
-          <button class="btn btn-primary" type="submit">Editar</button>
+          <button class="btn btn-primary" href="#about">Editar</button>
         
         </div>
       </form>
     </div>
-   s
+   
 {% endblock contenido %}

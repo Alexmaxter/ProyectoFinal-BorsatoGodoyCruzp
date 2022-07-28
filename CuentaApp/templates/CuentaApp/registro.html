@@ -7,22 +7,26 @@
 
 {% block contenido %}
 
-<div style="background-color: #212529; color: #ffffff; border-radius: 1rem;" class="contenedorFormulario">
-
-    <form action={% url 'registro' %} method="post">
+<div class="contenedorFormulario" style="width: 30%; padding: 2rem; margin: 0 auto;">
+    <div style="text-align: center;margin: 2rem 0rem 2rem 0rem;">
+        <img src="{% static 'LibreriaCoderApp/assets/img/Registrarse.jpg' %}" alt="" style="width:70%">
+    </div>
+    <span class="TituloPost" style="margin:auto 0">Registrarse</span>
+    <form action={% url 'registro' %} method="post" style=" text-align: right;">
 
         {% csrf_token %}
-    
-        <table>
-            {{formulario_registro.as_table}}
-        </table>
-    
-        <div style="text-align: center; width: 100%; margin: 1rem 0;">
-            <button class="btn btn-primary">Registrarse</button>
-        </div>
-    
-    </form>
 
+            <div  style="margin:2rem auto">
+                    {{formulario_registro.as_table}}    
+                <div style="text-align: center; margin: 2rem;">
+                    <button class="btn btn-primary"  style="text-align: center;" >Registrarse</button>
+                    </div>
+            </div>
+
+    </form>
+    
+   
 </div>
+
 
 {% endblock contenido %}

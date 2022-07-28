@@ -24,8 +24,11 @@
                 
                 <div class="text-center mt-3">
                     <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{usuario.user}}</span>
-                    <h5 class="mt-2 mb-0">{{usuario.first_name}} {{usuario.last_name}}</h5>
-                    <span>UI/UX Designer</span>
+                        {% if request.user != usuario.user %}
+                            <h5 class="mt-2 mb-0">{{usuario.user.first_name}} {{usuario.user.last_name}}</h5>
+                        {% else %}
+                            <h5 class="mt-2 mb-0">{{request.user.first_name}} {{request.user.last_name}}</h5>
+                        {% endif %}
                     
                     <div class="px-4 mt-1">
                         <p class="fonts">{{usuario.descripcion}}</p>
@@ -55,10 +58,19 @@
         <div class="col-md-7" style=" width: 50%;">
             
             <div class="card p-3 py-4 bg-light" style="border-radius: 1rem;">
-            
-            <span>Acá van los posts del usuario</span> 
+                <span class="TituloPost" style="margin:auto 0">Posteos realizados</span>
+                <br>
                 
-                
+                    {% for post in posts %}
+                    
+                        {% if  usuario.user.username == post.autor.username %}
+                            
+                            <a class="alert alert-primary" href='{% url "post" post.id %}' style="text-decoration:none" sty><span>{{post.titulo}}</span></a>
+                    
+                        {% endif %}
+                    
+                    {% endfor %}
+               
             </div>
             
             

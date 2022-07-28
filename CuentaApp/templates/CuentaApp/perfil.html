@@ -25,19 +25,24 @@
                 <div class="text-center mt-3">
                     <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{request.user.username}}</span>
                     <h5 class="mt-2 mb-0">{{request.user.first_name}} {{request.user.last_name}}</h5>
-                    <span>UI/UX Designer</span>
                     
                     <div class="px-4 mt-1">
                         <p class="fonts">{{request.user.masdatosusuarios.descripcion}}</p>
                     
                     </div>
                     
-                    <div class="buttons">
+                    <div class="buttons" >
                         
-                        <button class="btn btn-outline-primary px-4">Enviar Mensaje</button>
-                        <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %}>Editar perfil</a>
-                        <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %}>Salir</a>
+                        <a class="btn btn-secondary px-4 ms-3" href="{#" style="width:40%; margin:1rem;">Mensajes</a>
+                        
                     </div>
+                    <div class="buttons" style="margin: 2rem">
+                        
+                        <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
+                        <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %} style="margin: 0rem 1rem 0rem 1rem;;">Salir</a>
+                        
+                    </div>
+                    
                     
                     
                 </div>
@@ -52,10 +57,19 @@
         <div class="col-md-7" style=" width: 50%;">
             
             <div class="card p-3 py-4 bg-light" style="border-radius: 1rem;">
+                
+            <span class="TituloPost" style="margin:auto 0">Posteos realizados</span>
+                <br>
+                {% for post in posts %}
+                    
+                    {% if  request.user.username == post.autor.username %}
+                        
+                        <a class="alert alert-primary" href='{% url "post" post.id %}' style="text-decoration:none" sty><span>{{post.titulo}}</span></a>
+                
+                    {% endif %}
             
-            <span>Acá van los posts del usuario</span> 
-                
-                
+                {% endfor %}
+           
             </div>
             
             
