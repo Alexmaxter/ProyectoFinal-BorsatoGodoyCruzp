@@ -24,7 +24,7 @@
 
   <body>
     <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: solid;border-color:#dee2e6;border-width:1px;">
       <div class="container">
         <a class="navbar-brand Logo" href={% url 'inicio' %}
           >LIBRERIA<span class="Logo" style="color: #198754;">CODER</span></a>
@@ -59,22 +59,25 @@
               <a class="nav-link  {% if request.path == "/contacto/" %}active{% endif %}"  href={% url 'contacto' %}>CONTACTO</a>
             </li>
             {% if request.user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href={% url 'perfil' %} style="text-transform: uppercase;" >
-              {% if request.user.masdatosusuarios.avatar %}
-              <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:30px;width:30px;"  alt=""class="border border-success">
-              {% else %}
-              <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;border: 1px; height:30px;width:30px;" alt="" class="border border-success;">
-              {% endif %}
+            <li class="nav-item"><a class="nav-link" href={% url 'perfil' %} style="text-transform: uppercase;background-color:#198754; border-radius:0.3rem 0rem 0rem 0.3rem; color:white; margin: 0rem 0rem 0rem 1rem;border-color:#198754;border-style:solid;border-width:1px;border-width:1px;" >
               {{request.user.username}}
-              
             </a>
           </li>
-            {% else %}
-            <li class="nav-item"><a class="nav-link" href={% url 'iniciar_sesion' %}>INICIAR SESIÓN</a></li>
-            <li class="nav-item"><a class="nav-link" href={% url 'registro' %}>REGISTRARSE</a></li>
-            {% endif %}
+          
+          
           </ul>
         </div>
+        <div style="background-color:#198754;border-radius: 0rem 2rem 2rem 0rem;border-style:solid;border-width:1px;border-color:#198754;">
+        {% if request.user.masdatosusuarios.avatar %}
+        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:40px;width:40px;;border: 2px;"  alt=""class="border border-success">
+        {% else %}
+        <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;border: 2px; height:40px;width:40px;" alt="" class="border border-success;">
+        {% endif %}
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href={% url 'iniciar_sesion' %} style="border-radius:0.3rem; border-style:solid;border-width:1px;border-color:#198754;color:#198754;">INICIAR SESIÓN</a></li>
+        <li class="nav-item"><a class="nav-link" style="background-color:#198754; border-radius:0.3rem; color:white; margin: 0rem 0rem 0rem 1rem;border-color:#198754;border-style:solid;border-width:1px;border-width:1px;" href={% url 'registro' %}>REGISTRARSE</a></li>
+        {% endif %}
+      </div>
       </div>
     </nav>
     <!-- CONTENIDO -->
@@ -131,9 +134,9 @@
 
     {% endblock contenido %}
     <!-- Footer-->
-    <footer class="py-5 -light bg-light" style="bottom:0; width: 100%;">
+    <footer class="py-5 -light bg-light" style="border-top: solid;border-color:#dee2e6;border-width:1px ;width: 100%;">
       <div class="container">
-        <p class="m-0 text-center">
+        <p class="m-0" style="text-align:center;">
           Copyright &copy; LibreriaCoder 2022
         </p>
       </div>

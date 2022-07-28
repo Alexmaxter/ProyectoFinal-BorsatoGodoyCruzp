@@ -59,13 +59,13 @@
             <div class="card p-3 py-4 bg-light" style="border-radius: 1rem;">
                 
             <span class="TituloPost" style="margin:auto 0">Posteos realizados</span>
-                <br>
+                
                 {% for post in posts %}
                     
                     {% if  request.user.username == post.autor.username %}
                         
-                        <a class="alert alert-primary" href='{% url "post" post.id %}' style="text-decoration:none" sty><span>{{post.titulo}}</span></a>
-                
+                        <a class="alert alert-primary" href='{% url "post" post.id %}' style="text-decoration:none;margin: 1rem 0rem 0rem 0rem;" sty><img src={{post.imagen.url}} style="width:100px;border-radius:0.2rem;" alt="">&nbsp; &nbsp; <span class="lead" style="color:black">{{post.titulo}}</span></a>
+
                     {% endif %}
             
                 {% endfor %}
