@@ -3,6 +3,8 @@ from BlogApp.models import Post, Categoria
 from BlogApp.forms import FormularioPost, FormularioBusqueda
 from django.contrib.auth.decorators import login_required
 
+from CuentaApp.models import MasDatosUsuarios
+
 def blog(request):
 
     posts=Post.objects.all().order_by("-id")
@@ -54,7 +56,6 @@ def crear_post(request):
 def post(request, id):
 
     post = Post.objects.get(id=id)
-
     return render(request, "BlogApp/post.html", {"post": post})
 
 
@@ -105,6 +106,7 @@ def buscar_post(request):
 def editar_post(request, id):
     post = Post.objects.get(id=id)
     
+    formulario_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
    
     if request.method == 'POST':
         form = FormularioPost(request.POST, request.FILES)
@@ -122,7 +124,6 @@ def editar_post(request, id):
         else:
             return render(request, "BlogApp/crear_post.html", {"formulario_post": formulario_post, "post": post})
     
-    formulario_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
     
     return render(request, "BlogApp/editar_post.html", {"formulario_post": formulario_post, "post": post})
 

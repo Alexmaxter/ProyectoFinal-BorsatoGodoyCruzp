@@ -1,3 +1,4 @@
+from re import S
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
@@ -5,6 +6,8 @@ from .models import MasDatosUsuarios
 from django.contrib.auth.decorators import login_required
 from .forms import FormularioInicioSesion, FormularioRegistro, FormularioEditarPerfil
 from BlogApp.models import Post
+
+from django.contrib.auth.models import User
 
 # def iniciar_sesion(request):
     
@@ -133,11 +136,12 @@ def registro(request):
         formulario_registro = FormularioRegistro(request.POST)
         if formulario_registro.is_valid():
             formulario_registro.save()
-            return render (request, 'inicio.html', {})
+            return redirect('iniciar_sesion')
         else:
             return render(request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro} )
     
     formulario_registro=FormularioRegistro()
+    
     return render (request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro})
 
 @login_required
@@ -190,7 +194,11 @@ def editar_perfil(request):
 
 def perfil_usuario(request, id):
 
-    usuario = MasDatosUsuarios.objects.get(id=id)
+    usuario = User.objects.get(id=id)
+    informacion = MasDatosUsuarios.objects.get(id=id)
     posts = Post.objects.all()
 
-    return render (request, 'CuentaApp/perfil_usuario.html', {'usuario':usuario,"posts":posts})
+
+
+    return render (request, 'CuentaApp/perfil_usuario.html', {"posts":posts,"usuario":usuario,"informacion":informacion})
+

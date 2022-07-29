@@ -16,7 +16,7 @@
             <div class="card p-3 py-4 bg-light" style="border-radius: 1rem;">
                 <div class="text-center">
                     {% if request.user.masdatosusuarios.avatar %}
-                        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%; height:250px;width:250px;"  alt="" class="border border-success">
+                        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%; height:250px;width:250px;object-fit:cover;"  alt="" class="border border-success">
                     {% else %}
                         <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;height:250px;width:250px;"    alt="" class="border border-success">
                     {% endif %}
@@ -27,7 +27,11 @@
                     <h5 class="mt-2 mb-0">{{request.user.first_name}} {{request.user.last_name}}</h5>
                     
                     <div class="px-4 mt-1">
-                        <p class="fonts">{{request.user.masdatosusuarios.descripcion}}</p>
+                        {% if request.user.masdatosusuarios.descripcion == None %}
+                            <p class="fonts">No hay descripción</p>
+                        {% else %}
+                            <p class="fonts">{{request.user.masdatosusuarios.descripcion}}</p>
+                        {% endif %}
                     
                     </div>
                     
@@ -36,7 +40,7 @@
                         <a class="btn btn-secondary px-4 ms-3" href="{#" style="width:40%; margin:1rem;">Mensajes</a>
                         
                     </div>
-                    <div class="buttons" style="margin: 2rem">
+                    <div class="buttons">
                         
                         <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
                         <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %} style="margin: 0rem 1rem 0rem 1rem;;">Salir</a>

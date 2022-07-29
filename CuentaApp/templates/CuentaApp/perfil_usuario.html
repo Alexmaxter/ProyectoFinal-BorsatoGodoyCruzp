@@ -15,19 +15,17 @@
             
             <div class="card p-3 py-4 bg-light" style="border-radius: 1rem;">
                 <div class="text-center">
-                    {% if usuario.avatar %}
-                        <img src={{usuario.avatar.url}} style="border-radius: 50%; height:250px;width:250px;"  alt="" class="border border-success">
+              
+                    {% if informacion.avatar %}
+                    <img src={{ informacion.avatar.url }} style="border-radius: 50%; height:250px;width:250px; object-fit: cover"  alt="" class="border border-success">
                     {% else %}
-                        <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;height:250px;width:250px;"    alt="" class="border border-success">
+                    <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;height:250px;width:250px;"    alt="" class="border border-success">
                     {% endif %}
                 </div>
-                
                 <div class="text-center mt-3">
-                    <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{usuario.user}}</span>
+                    <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{usuario.username}}</span>
                         {% if request.user != usuario.user %}
-                            <h5 class="mt-2 mb-0">{{usuario.user.first_name}} {{usuario.user.last_name}}</h5>
-                        {% else %}
-                            <h5 class="mt-2 mb-0">{{request.user.first_name}} {{request.user.last_name}}</h5>
+                            <h5 class="mt-2 mb-0">{{usuario.first_name}} {{usuario.last_name}}</h5>
                         {% endif %}
                     
                     <div class="px-4 mt-1">
@@ -72,10 +70,10 @@
                 
                     {% for post in posts %}
                     
-                        {% if  usuario.user.username == post.autor.username %}
-                            
+                        {% if  usuario.username == post.autor.username %}
                         
-                            <a class="alert alert-primary" href='{% url "post" post.id %}' style="text-decoration:none;margin: 1rem 0rem 0rem 0rem;" sty><img src={{post.imagen.url}} style="width:100px;border-radius:0.2rem;" alt="">&nbsp; &nbsp; <span class="lead" style="color:black">{{post.titulo}}</span></a>
+                                <a class="alert alert-primary" href='{% url "post" post.id %}' style="text-decoration:none;margin: 1rem 0rem 0rem 0rem;" sty><img src={{post.imagen.url}} style="width:100px;border-radius:0.2rem;" alt="">&nbsp; &nbsp; <span class="lead" style="color:black">{{post.titulo}}</span></a>
+                        
                     
                         {% endif %}
                     

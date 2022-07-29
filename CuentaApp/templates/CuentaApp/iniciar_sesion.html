@@ -7,30 +7,34 @@
 
 {% block contenido %}
 
-<div class="contenedorFormulario" style="padding: 2rem;margin: 2rem 30rem 2rem 30rem">
 
-    <div style="text-align: center;margin: 2rem 0rem 2rem 0rem;">
-        <img src="{% static 'LibreriaCoderApp/assets/img/IniciarSesion.jpg' %}" alt="" style="width:60%">
+<div class="contenedorFormulario" style="margin: 2rem 18rem; display: flex; align-items: center;">
+
+    <div style="text-align: center;width: 100%">
+        <img src="{% static 'LibreriaCoderApp/assets/img/IniciarSesion.jpg' %}" alt="" style="width: 100%;padding:2rem">
     </div>
-    <span class="TituloPost" style="margin:auto 0">Iniciar sesión</span>
-    <form action={% url 'iniciar_sesion' %} method="post" style=" text-align: right;">
 
-        {% csrf_token %}
-            
-            <div  style="margin:2rem auto">
+    <div style="padding:0rem 2rem;width: 100%">
+        <div  style="margin:2rem auto">
+            <div style="text-align:left;">
+        <span class="TituloPost" >Iniciar sesión</span>
+        </div>
+        <form action={% url 'iniciar_sesion' %} method="post" style=" text-align: right;">
+
+            {% csrf_token %}
                 {{form_login.as_table}}    
-                <div class='form-group'>
-                        <label for="{{ field.name }}">{{ field.label }}</label>
-                        {{ field }}
-                      </div>
-                <div style="text-align: center; margin: 0rem 2rem 0rem 2rem;">
-                    <button class="btn btn-primary"  style="text-align: center;"  >Iniciar sesión</button>
-                    </div>
+
+            <div class='form-group'>
+                <label for="{{ field.name }}">{{ field.label }}</label>
+                {{ field }}
             </div>
 
-    </form>
-    
-   
+            <div style="text-align: center; margin: 0rem 2rem 0rem 2rem;">
+                <button class="btn btn-primary"  style="text-align: center;"  >Iniciar sesión</button>
+            </div>
+        </form>
+    </div>
+</div>
 </div>
 
 {% endblock contenido %}

@@ -40,7 +40,7 @@
                   <p class="card-text">
                       <h6 class="mall text-muted"style="margin: 0;" >{{post.subtitulo}}</h6>
                   </p>
-                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>  
+                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: <a href='{% url "perfil_usuario"  post.autor.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>  
                   
                   <div style="margin: 1rem auto;">
                     {% if post.categorias.all %}

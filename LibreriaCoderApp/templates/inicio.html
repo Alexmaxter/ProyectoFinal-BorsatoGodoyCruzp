@@ -17,7 +17,7 @@
 
                 <header class="mb-4 ">  
                     <!-- Post title-->
-                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por <a href='{% url "perfil_usuario" ultimo_post.autor.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{ultimo_post.autor}}</span> </a></div>                    
+                    <div class="text-muted fst-italic mb-2">Publicado el {{ultimo_post.creado.day}}/{{ultimo_post.creado.month}}/{{ultimo_post.creado.year}} por <a href='{% url "perfil_usuario" ultimo_post.autor.id  %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{ultimo_post.autor}}</span> </a></div>                    
                     <a href='{% url "post" ultimo_post.id %}' style="text-decoration:none;"><span class="TituloPost">{{ultimo_post.titulo}}</span></a>
                     <!-- Post meta content-->
                     <!-- Post categories-->

@@ -8,18 +8,18 @@
 {% block contenido %}
 
     
-    <!-- Page content-->
-    <div class="container mt-5 bg-light" style=" padding:2rem; margin-bottom: 2rem;">
-        <div class="row">
-            <div class="col-lg-8" style="background-color: white;padding:2rem;border-style: solid;
-            border-width: 1px;
-            border-color: #dee2e6;">
+       <!-- Page content-->
+       <div class="container mt-5 bg-light" style=" padding:2rem; margin-bottom: 2rem;">
+        <div class="row"style="background-color: white;padding:2rem;border-style: solid;
+        border-width: 1px;
+        border-color: #dee2e6;">
                 <!-- Post content-->
                 <article >
                     <!-- Post header-->
                     <header class="mb-4" >
                         <!-- Post title-->
-                        <div class="text-muted fst-italic mb-2">Publicado el {{post.creado.day}}/{{post.creado.month}}/{{post.creado.year}} por <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>                        
+                        <div class="text-muted fst-italic mb-2">Publicado el {{post.creado.day}}/{{post.creado.month}}/{{post.creado.year}} por <a href='{% url "perfil_usuario" post.autor.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>                        
+                        
                         <span class="TituloPost">{{post.titulo}}</span>
                         
                         <!-- Post meta content-->
@@ -30,9 +30,9 @@
 
                         {% for categoria in post.categorias.all %}
                        
-                        <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
+                        <a href='{% url "categoria" categoria.id %}' class="badge bg-secondary text-decoration-none link-light" ><div style="text-transform: capitalize;">
                             {{categoria.nombre}} 
-                        </div> 
+                        </div> </a>
                        
                         {% endfor %}
                     {% else %}
@@ -65,9 +65,11 @@
 </div>
 
 
-</div>
 
-</div>
+
+
+
+
 </div>
             
     
