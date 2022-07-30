@@ -1,26 +1,26 @@
 from django.shortcuts import render,redirect
-from BlogApp.models import Post, Categoria
+from BlogApp.models import Post
 from BlogApp.forms import FormularioPost, FormularioBusqueda
 from django.contrib.auth.decorators import login_required
 
-from CuentaApp.models import MasDatosUsuarios
+# from CuentaApp.models import MasDatosUsuarios
 
 def blog(request):
 
     posts=Post.objects.all().order_by("-id")
-    categoria = Categoria.objects.all()
+    # categoria = Categoria.objects.all()
 
 
 
-    return render(request, "BlogApp/blog.html",{'posts':posts,'categoria':categoria})
+    return render(request, "BlogApp/blog.html",{'posts':posts})
 
 
-def categoria(request,categoria_id):
+# def categoria(request,categoria_id):
 
-    categoria=Categoria.objects.get(id=categoria_id)
-    posts=Post.objects.filter(categorias=categoria)
+#     # categoria=Categoria.objects.get(id=categoria_id)
+#     posts=Post.objects.filter(categorias=categoria)
     
-    return render(request, "BlogApp/categoria.html",{'categoria':categoria,'posts':posts})
+#     return render(request, "BlogApp/categoria.html",{'categoria':categoria,'posts':posts})
 
 
 @login_required
@@ -102,30 +102,58 @@ def buscar_post(request):
     
 #     return render(request, "BlogApp/editar_post.html", {"formulario_editar_post": formulario_editar_post, "post": post})
 
+# @login_required
+# def editar_post(request, id):
+#     post = Post.objects.get(id=id)
+    
+#     formulario_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
+   
+#     if request.method == 'POST':
+#         form = FormularioPost(request.POST, request.FILES)
+
+#         if form.is_valid():
+#             post.titulo = form.cleaned_data.get('titulo')
+#             post.subtitulo = form.cleaned_data.get('subtitulo')
+#             post.contenido = form.cleaned_data.get('contenido')
+#             post.autor = form.cleaned_data.get('autor')
+#             post.creado = form.cleaned_data.get('creado')
+#             post.imagen = form.cleaned_data.get('imagen')
+#             post.save()
+            
+#             return redirect('post')
+#         else:
+#             return render(request, "BlogApp/crear_post.html", {"formulario_post": formulario_post, "post": post})
+    
+    
+#     return render(request, "BlogApp/editar_post.html", {"formulario_post": formulario_post, "post": post})
 @login_required
 def editar_post(request, id):
     post = Post.objects.get(id=id)
     
-    formulario_post = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
-   
     if request.method == 'POST':
-        form = FormularioPost(request.POST, request.FILES)
-
-        if form.is_valid():
-            post.titulo = form.cleaned_data.get('titulo')
-            post.subtitulo = form.cleaned_data.get('subtitulo')
-            post.contenido = form.cleaned_data.get('contenido')
-            post.autor = form.cleaned_data.get('autor')
-            post.creado = form.cleaned_data.get('creado')
-            post.imagen = form.cleaned_data.get('imagen')
+        edit_form = FormularioPost(request.POST, request.FILES)
+        
+        if edit_form.is_valid():
+            form = edit_form.cleaned_data
+            post.titulo = form.get('titulo') if form.get('titulo') else post.titulo
+            post.subtitulo = form.get('subtitulo') if form.get('subtitulo') else post.subtitulo
+            post.contenido = form.get('contenido') if form.get('contenido') else post.contenido
+            post.autor = form.get('autor') if form.get('autor') else post.autor
+            post.creado = form.get('creado') if form.get('creado') else post.creado
+            post.imagen = form.get('imagen') if form.get('imagen') else post.imagen
             post.save()
             
-            return redirect('post')
+            return redirect('blog')
         else:
-            return render(request, "BlogApp/crear_post.html", {"formulario_post": formulario_post, "post": post})
+            return render(request, "BlogApp/editar_post.html", {"form": form, "post": post})
     
     
-    return render(request, "BlogApp/editar_post.html", {"formulario_post": formulario_post, "post": post})
+    form = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo, 'contenido': post.contenido, 'autor': post.autor, 'creado': post.creado, 'imagen': post.imagen})
+    
+    return render(request, "BlogApp/editar_post.html", {"form": form, "post": post})
+
+
+
 
 @login_required
 def eliminar_post(request, id):

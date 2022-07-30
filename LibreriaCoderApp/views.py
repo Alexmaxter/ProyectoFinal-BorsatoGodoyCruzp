@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 
 from django.shortcuts import render
 from BlogApp.forms import FormularioBusqueda
-from BlogApp.models import Post, Categoria
-from BlogApp.views import categoria
+from BlogApp.models import Post
+
 
 def inicio(request):
 
     users = User.objects.all()
     ultimo_post=Post.objects.latest('id')
-    categoria = Categoria.objects.all()
+    # categoria = Categoria.objects.all()
 
     total_usuarios=User.objects.count()
 
@@ -26,8 +26,7 @@ def inicio(request):
     formulario_busqueda = FormularioBusqueda()
     
     
-    return render(request, "inicio.html", {"users":users,"ultimo_post":ultimo_post,
-    "categoria":categoria,
+    return render(request, "inicio.html", {"users":users,"ultimo_post": ultimo_post,
     "listado_post": listado_post,
     "formulario_busqueda": formulario_busqueda,
     "total_usuarios":total_usuarios})

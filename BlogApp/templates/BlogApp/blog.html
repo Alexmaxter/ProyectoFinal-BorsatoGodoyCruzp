@@ -24,7 +24,12 @@
             <div class="col-lg-4" style="margin: 1rem 0; ">
                 <div class="card">
                   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
+                    {% if post.imagen %}
                     <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
+                    {% else %}
+                    <p></p>
+                    {% endif %}
+                    
                     <a href="#!">
                       <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>

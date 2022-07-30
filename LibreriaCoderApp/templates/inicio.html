@@ -23,7 +23,7 @@
                     <!-- Post categories-->
                     <br>
                     <div class="text fst-italic mb-2">{{ultimo_post.subtitulo}}</div>
-                    {% if ultimo_post.categorias.all%}
+                    {% comment %} {% if ultimo_post.categorias.all%}
 
                         {% for categoria in ultimo_post.categorias.all %}
                        
@@ -37,10 +37,16 @@
                         <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
                             Sin categoria 
                         </div> 
-                    {% endif %}
+                    {% endif %} {% endcomment %}
                 </header>
                 <!-- Preview image figure-->
+                
+                {% if ultimo_post.imagen %}
                 <figure class="mb-4"><img class="img-fluid rounded" src="{{ultimo_post.imagen.url}}" style="height: 400px; width:900px; object-fit: cover; width:100%;" alt="..." /></figure>
+                
+                {% else %}
+                <p></p>
+                {% endif %}
                 <!-- Post content-->
                 <section class="mb-5">
                    {{ultimo_post.contenido|safe}}
@@ -54,16 +60,14 @@
             <!-- Search widget-->
             <div class="card mb-4" >
                 <div class="card-header">Buscar</div>
-                <div class="card-body">    
-                      
-                        <form action="{% url 'buscar_post' %}" method="post">
-                            {% csrf_token %}
-                            {% for field in formulario_busqueda %}
-                              <label for="{{ field.name }}"></label>
-                              {{ field }}
-                              <button class="btn btn-primary" style="float: right;"id="button-search" type="button">Buscar</button>
-                           
-                            {% endfor %}
+                <div class="card-body">  
+                            <form action={% url 'buscar_post' %}  enctype="multipart/form-data">
+      
+                                <div style="margin:2rem auto">
+                                {{formulario_busqueda}}</div>
+                                <button class="btn btn-primary" style="float: right;">Buscar</button>
+                                
+                              </form>
                         
                           
                     </div>
