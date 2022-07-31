@@ -24,14 +24,15 @@
                         <p style="margin: 1rem"> {{form_edit.first_name }} </p>
                         <p style="margin: 1rem"> {{form_edit.last_name }} </p>
                         <p style="margin: 1rem"> {{form_edit.descripcion }} </p>
-                        <p style="margin: 1rem"> {{form_edit.password1 }} </p>
-                        <p style="margin: 1rem"> {{form_edit.password2 }} </p>
                         <div style="text-align: center; ">
                             <p style="margin: 1rem"> {{form_edit.avatar }} </p>
                         </div>
                     
                     <div style="width: 90%;margin: 2rem; overflow:hidden">
                         <a class="btn btn-danger px-4 ms-3" href={% url "perfil" %} style="float:left;">Cancelar</a>
+                            
+                        <a class="btn btn-danger px-4 ms-3" href={% url 'cambiar_contrasegna' %} style="float:center;">Cambiar Contraseña</a>
+                
                         <button class="btn btn-primary"href="#about" style="float:right">Guardar</button>
                     </div>
              

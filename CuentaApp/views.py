@@ -7,105 +7,9 @@ from .models import MasDatosUsuarios
 from django.contrib.auth.decorators import login_required
 from .forms import FormularioInicioSesion, FormularioRegistro, FormularioEditarPerfil
 from BlogApp.models import Post
+from django.contrib.auth.views import PasswordChangeView
 
 from django.contrib.auth.models import User
-
-# def iniciar_sesion(request):
-    
-#     if request.method == 'POST':
-#         formulario_inicio = AuthenticationForm(request, data=request.POST)
-        
-#         if formulario_inicio.is_valid():
-
-#             nombre_usuario = formulario_inicio.cleaned_data.get('nombre_usuario')
-#             clave= formulario_inicio.cleaned_data.get('clave')
-            
-#             usuario=authenticate(nombre_usuario=nombre_usuario, clave_1=clave)
-        
-#             if usuario is not None:
-            
-#                 django_login (request, usuario)
-#                 return render (request, 'inicio.html', {})
-            
-#             else:
-            
-#                 return render(request, 'CuentaApp/iniciar_sesion.html', {'formulario_inicio': formulario_inicio})
-        
-#         else:
-        
-#             return render(request, 'CuentaApp/iniciar_sesion.html',  {'formulario_inicio': formulario_inicio})
-            
-    
-#     formulario_inicio = AuthenticationForm()
-#     return render(request, 'CuentaApp/iniciar_sesion.html',  {'formulario_inicio': formulario_inicio})
-
-
-# def registro(request):
-    
-#     if request.method == 'POST':
-
-#         formulario_registro = FormularioRegistro(request.POST)
-    
-#         if formulario_registro.is_valid():
-
-#             formulario_registro.save()
-#             return render (request, 'inicio.html', {})
-
-        
-#         else:
-
-#             return render(request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro})
-    
-#     formulario_registro=FormularioRegistro()
-    
-#     return render (request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro})
-
-
-# @login_required
-
-# def perfil(request):
-#     return render (request, 'CuentaApp/perfil.html')
-
-# @login_required
-
-# def editar_perfil(request):
-    
-#     usuario = request.usuario
-#     usuario_extra = Usuario.objects.get_or_create(usuario=usuario)
-    
-#     if request.method == 'POST':
-#         formulario_editar= FormularioEditarUsuario(request.POST, request.FILES)
-#         if formulario_editar.is_valid():
-#             data = formulario_editar.cleaned_data
-#             usuario.first_name = data.get('first_name') if data.get('first_name') else  usuario.first_name
-#             usuario.last_name = data.get('last_name') if data.get('last_name') else  usuario.last_name
-#             usuario.email = data.get('email') if data.get('email') else usuario.email
-#             usuario_extra.avatar = data.get('avatar') if data.get('avatar') else usuario_extra.avatar
-            
-#             if data.get('password1') and data.get('password1') == data.get('password2'):
-#                 usuario.set_password(data.get('password1'))
-            
-#             usuario_extra.save()
-#             usuario.save()
-            
-#             return redirect('perfil')
-        
-#         else:
-#             return render(request, 'accounts/editar_perfil.html', {'form_edit':formulario_editar} )    
-            
-    
-#     formulario_editar = FormularioEditarUsuario(
-#         initial={
-#             'email': usuario.email,
-#             'nombre': usuario.nombre,
-#             'last_name': usuario.last_name,
-#             'avatar': usuario_extra.avatar,
-#         }
-#     )
-             
-#     return render (request, 'accounts/editar_perfil.html', {'form_edit':formulario_editar})
-
-
 
 def iniciar_sesion(request):
     if request.method == 'POST':
@@ -222,3 +126,7 @@ def perfil_usuario(request, id):
 
     return render (request, 'CuentaApp/perfil_usuario.html', {"posts":posts,"usuario":usuario,"masdatosusuarios":masdatosusuarios})
 
+class ChangePasswordView(PasswordChangeView):
+    template_name = 'CuentaApp/cambiar_contrasegna.html'
+    succes_url = '/CuentaApp/perfil'
+    

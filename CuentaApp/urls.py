@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.urls import path
-from .views import iniciar_sesion, perfil, registro, editar_perfil, perfil_usuario
+from .views import iniciar_sesion, perfil, registro, editar_perfil, perfil_usuario, ChangePasswordView
 from django.contrib.auth.views import LogoutView
 from django.conf.urls.static import static
 
@@ -11,6 +11,7 @@ urlpatterns = [
     path('perfil/', perfil, name='perfil'),
     path('perfil_usuario/<int:id>/', perfil_usuario, name='perfil_usuario'),
     path('perfil/editar', editar_perfil, name='editar_perfil'),
+    path('perfil/cambiar_contraseña', ChangePasswordView.as_view(), name='cambiar_contrasegna'),
 ]
 
 

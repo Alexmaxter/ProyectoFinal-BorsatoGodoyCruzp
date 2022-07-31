@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Cambiar Contraseña</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="container mt" style="margin: 4rem auto;">
+    <div class="row d-flex justify-content-center">      
+        <div class="col-md-7" style=" width: 100%;">       
+                
+            <div class="contenedorFormulario" style="margin: 2rem 12rem 2rem 12rem;">
+                <div style="padding: 2rem 6rem 0rem 4rem;">
+                    <span class="TituloPost" style="margin:auto 0">Cambiar Contraseña</span>
+                </div>
+
+
+                <form action={% url 'editar_perfil' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+
+                    <a href={% url  'cambiar_contrasegna' %}>Cambiar</a>
+                    {% csrf_token %}
+                    <table>
+                        {{form.as_table}}
+                    </table>
+                    <a>Cambiar</a>
+                </form>
+                
+    
+            </div>
+        </div>
+    </div>
+</div>
+                
+                    
+            
+        
+         
+
+{% endblock contenido %}
