@@ -2,10 +2,29 @@
 {% load static %}
 
 {% block titulo %}
-<title>Blog - LibreríaCoder</title>
+<title>Blog - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
+
+{% if blog_vacio == 0 %}
+<div  style="text-align: right; margin: 1rem 6rem 1rem 1rem"class=" bg-light">
+  {% if request.user.is_authenticated %}
+  <a class="btn btn-primary" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Crear post</a>
+  {% endif %}
+  <a class="btn btn-primary" href='{% url "buscar_post" %}' style="width:10rem">Buscar post</a>
+</div>
+                    <div class="contenedorFormulario" style="margin: 2rem 18rem;  text-align: center;padding:2rem;">
+                        
+                        <img src="{% static 'LibreriaCoderApp/assets/img/PaginaVacia.png' %}" alt="" style="width: 50%;filter: grayscale(100%)">
+                        <h2 class="fw-bolder TituloPost">¡Ups! No hay nada por aquí...</h2>
+                                
+                            
+                    {% else %}
+                        
+                        
+                        
+                    
 <div  style="text-align: right; margin: 1rem 6rem 1rem 1rem"class=" bg-light">
     {% if request.user.is_authenticated %}
     <a class="btn btn-primary" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Crear post</a>
@@ -21,13 +40,16 @@
         <div class="row">
 
             {% for post in posts %}
+            
             <div class="col-lg-4" style="margin: 1rem 0; ">
                 <div class="card">
                   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
                     {% if post.imagen %}
                     <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
                     {% else %}
-                    <p></p>
+                    <div  class="img-fluid"style="height: 250px;  width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;background-color: #ced4da;align-items: center;display: flex;" />
+                    <p class="TituloPost" style="margin: 0 auto;color:#e9ecef">BLOGCODER</p>
+                    </div>
                     {% endif %}
                     
                     <a href="#!">
@@ -41,27 +63,20 @@
                     </p>
                     <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: <a href='{% url "perfil_usuario" post.autor.id %}'><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>  
                     
-                    <div style="margin: 1rem auto;">
-                      {% if post.categorias.all %}
-                      {% for categoria in post.categorias.all %}
-                      <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                        <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a>    
-                            </div> 
-                      {% endfor %}
-                      {% else %}
-                      <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                       Sin categoria
-                      </div> 
-                            {% endif %}
-                    </div>
-                    <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%">Leer más</a>
+                    <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%; margin: 1rem 0rem 0rem 0rem">Leer más</a>
                     
                   </div>
                 </div>
               </div>
+
+
+
+
+
               
               {% endfor %}
               
+              {% endif %}
         </div>
       </section>
       <!--Section: Content-->
@@ -70,13 +85,5 @@
 
 
 
-<section class="navbar-light bg-light" style="border-top: solid;border-color:#dee2e6;border-width:1px ;width: 100%;">
-    <div style="width=75%; text-align:left; margin: 1rem 1rem 1rem 6rem;">
-        <b>Categorias: </b>
-        {% for categoria in categoria.all %}
-            <a href='{% url "categoria" categoria.id %}'class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;"  style="text-decoration:none;color:white;">{{categoria.nombre}}</a>
-        {% endfor %}
-    </div>
-</section>
 
 {% endblock contenido %}

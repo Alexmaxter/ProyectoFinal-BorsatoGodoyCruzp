@@ -2,36 +2,49 @@
 {% load static %}
 
 {% block titulo %}
-<title>Editar perfil - LibreríaCoder</title>
+<title>Editar perfil - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
 
 <div class="container mt" style="margin: 4rem auto;">
-    
-    <div class="row d-flex justify-content-center">
-        
-        <div class="col-md-7" style=" width: 100%;">
-            
-            <div class="card p-3 py-4 bg-ligh" style="border-radius: 1rem;">
-                <form action={% url 'editar_perfil' %} method="post" enctype='multipart/form-data'>
-                    {% csrf_token %}
-                    <table>
-                        {{form_edit.as_table}}
-                    </table>
-                    <div style="width: 100%; text-align: center;margin: 1rem auto;" >
-                    <button class="btn btn-primary px-4 ms-3" style="">Editar</button>
+    <div class="row d-flex justify-content-center">      
+        <div class="col-md-7" style=" width: 100%;">       
+                
+            <div class="contenedorFormulario" style="margin: 2rem 12rem 2rem 12rem;">
+                <div style="padding: 2rem 6rem 0rem 4rem;">
+                    <span class="TituloPost" style="margin:auto 0">Editar perfil</span>
+                </div>
+
+                <form action={% url 'editar_perfil' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+                    
+                    
+                        {% csrf_token %}
+                        <p style="margin: 1rem"> {{form_edit.email }} </p>
+                        <p style="margin: 1rem"> {{form_edit.first_name }} </p>
+                        <p style="margin: 1rem"> {{form_edit.last_name }} </p>
+                        <p style="margin: 1rem"> {{form_edit.descripcion }} </p>
+                        <p style="margin: 1rem"> {{form_edit.password1 }} </p>
+                        <p style="margin: 1rem"> {{form_edit.password2 }} </p>
+                        <div style="text-align: center; ">
+                            <p style="margin: 1rem"> {{form_edit.avatar }} </p>
+                        </div>
+                    
+                    <div style="width: 90%;margin: 2rem; overflow:hidden">
+                        <a class="btn btn-danger px-4 ms-3" href={% url "perfil" %} style="float:left;">Cancelar</a>
+                        <button class="btn btn-primary"href="#about" style="float:right">Guardar</button>
                     </div>
+             
                 </form>
-                
-                
-            </div>
-            
-        </div>
-        
-        
-    </div>
     
+            </div>
+        </div>
+    </div>
 </div>
+                
+                    
+            
+        
+         
 
 {% endblock contenido %}

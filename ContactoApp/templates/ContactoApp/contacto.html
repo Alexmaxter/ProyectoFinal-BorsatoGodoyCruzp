@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Contacto - LibreríaCoder</title>
+<title>Contacto - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
@@ -10,7 +10,7 @@
 
 <div class="contenedorFormulario" style="padding: 2rem; margin: 2rem 18rem 2rem 18rem;">
 
-    <h1>Contacto</h1>
+    <h1 class="TituloPost">Contacto</h1>
     {% if "valido" not in request.GET %}
         
         <form action={% url 'buscar_post' %}  enctype="multipart/form-data">

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Busqueda - LibreríaCoder</title>
+<title>Busqueda - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
@@ -35,10 +35,12 @@
               <div class="card">
                 <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light" >
                   {% if post.imagen %}
-                  <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
-                  {% else %}
-                  <p></p>
-                  {% endif %}
+                    <img  src="{{post.imagen.url}}" class="img-fluid"style="height: 250px; object-fit: cover; width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;" />
+                    {% else %}
+                    <div  class="img-fluid"style="height: 250px;  width:100%; border-radius: 0.2rem 0.2rem 0rem 0rem;background-color: #ced4da;align-items: center;display: flex;" />
+                    <p class="TituloPost" style="margin: 0 auto;color:#e9ecef">BLOGCODER</p>
+                    </div>
+                    {% endif %}
                   
                   <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -49,22 +51,10 @@
                   <p class="card-text">
                       <h6 class="mall text-muted"style="margin: 0;" >{{post.subtitulo}}</h6>
                   </p>
-                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: {{post.autor}} </div>  
+                  <div class="small text-muted" style="text-transform: capitalize;">{{post.creado}} | Autor: <a href='{% url "perfil_usuario" post.autor.id %}'><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>  
                   
-                  <div style="margin: 1rem auto;">
-                    {% if post.categorias.all %}
-                    {% for categoria in post.categorias.all %}
-                    <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                      <a href='{% url "categoria" categoria.id %}' style="text-decoration:none;color:white;">{{categoria.nombre}}</a>    
-                          </div> 
-                    {% endfor %}
-                    {% else %}
-                    <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                     Sin categoria
-                    </div> 
-                          {% endif %}
-                  </div>
-                  <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%">Leer más</a>
+                
+                  <a class="btn btn-primary" href='{% url "post" post.id %}' style="width:100%; margin: 1rem 0rem 0rem 0rem"">Leer más</a>
                   
                 </div>
               </div>

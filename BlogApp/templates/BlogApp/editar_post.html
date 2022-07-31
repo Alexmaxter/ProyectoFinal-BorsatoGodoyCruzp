@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Editar post - LibreríaCoder</title>
+<title>Editar {{post.titulo}} - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
@@ -16,12 +16,18 @@
         
         <table style="margin: 1rem auto">
           {% csrf_token %}
-          {{form.as_table}} {{form.media}}
+          <p style="margin: 1rem"> {{form.titulo }} </p>
+    <p style="margin: 1rem"> {{form.subtitulo }} </p>
+    <div style="text-align: center; ">
+    <p style="margin: 1rem;"> {{form.contenido }}{{form.media}}</p>
+    </div>
+    <p style="text-align: center"> {{form.imagen }} </p>
         </table>
-        <div style="width: 90%;margin: 2rem; text-align: center;">
-          
-          <a class="btn btn-danger px-4 ms-3" href={% url "post" post.id %}>Cancelar</a>
-          <button class="btn btn-primary" href="#about">Guardar</button>
+        
+        <div style="width: 90%;margin: 2rem; overflow:hidden">
+      
+          <a class="btn btn-danger px-4 ms-3" href={% url "post" post.id %} style="float:left;">Cancelar</a>
+          <button class="btn btn-primary"href="#about" style="float:right">Guardar</button>
         
         </div>
       </form>

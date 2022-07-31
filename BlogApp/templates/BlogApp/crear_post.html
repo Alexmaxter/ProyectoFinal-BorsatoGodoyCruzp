@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Crear post - LibreríaCoder</title>
+<title>Crear post - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
@@ -15,17 +15,20 @@
   <div style="padding: 2rem 6rem 0rem 4rem;">
   <span class="TituloPost" style="margin:auto 0">Crear post</span>
   </div>
-  <form action={% url 'crear_post' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+  <form action={% url 'crear_post' %} method="post" enctype="multipart/form-data" style="text-align: left; margin: 0 auto">
     
     {% csrf_token %}
-    
-    <table style="margin: 1rem auto">
-      {{formulario_post.as_table}} {{formulario_post.media}}
-    </table>
-    <div style="width: 90%;margin: 2rem; text-align: center;">
+
+    <p style="margin: 1rem"> {{formulario_post.titulo }} </p>
+    <p style="margin: 1rem"> {{formulario_post.subtitulo }} </p>
+    <div style="text-align: center; ">
+    <p style="margin: 1rem;"> {{formulario_post.contenido }}{{formulario_post.media}}</p>
+    </div>
+    <p style="text-align: center"> {{formulario_post.imagen }} </p>
+    <div style="width: 90%;margin: 2rem; overflow:hidden">
       
-      <a class="btn btn-danger px-4 ms-3" href={% url "blog" %}>Cancelar</a>
-      <button class="btn btn-primary"href="#about">Crear</button>
+      <a class="btn btn-danger px-4 ms-3" href={% url "blog" %} style="float:left;">Cancelar</a>
+      <button class="btn btn-primary"href="#about" style="float:right">Publicar</button>
     
     </div>
   </form>

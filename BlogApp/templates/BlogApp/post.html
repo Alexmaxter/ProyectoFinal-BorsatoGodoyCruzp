@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>{{post.titulo}} - LibreríaCoder</title>
+<title>{{post.titulo}} - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
@@ -14,8 +14,9 @@
         border-width: 1px;
         border-color: #dee2e6;">
                 <!-- Post content-->
-                <article >
+                <article style="padding: 0rem">
                     <!-- Post header-->
+                    
                     <header class="mb-4" >
                         <!-- Post title-->
                         <div class="text-muted fst-italic mb-2">Publicado el {{post.creado.day}}/{{post.creado.month}}/{{post.creado.year}} por <a href='{% url "perfil_usuario" post.autor.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{post.autor}}</span> </a></div>                        
@@ -25,33 +26,20 @@
                         <!-- Post meta content-->
                         <div class="text fst-italic mb-2">{{post.subtitulo}}</div>
                         
-                        <!-- Post categories-->
-                        {% if post.categorias.all%}
-
-                        {% for categoria in post.categorias.all %}
-                       
-                        <a href='{% url "categoria" categoria.id %}' class="badge bg-secondary text-decoration-none link-light" ><div style="text-transform: capitalize;">
-                            {{categoria.nombre}} 
-                        </div> </a>
-                       
-                        {% endfor %}
-                    {% else %}
-
-                        <div class="badge bg-secondary text-decoration-none link-light" style="text-transform: capitalize;">
-                            Sin categoria 
-                        </div> 
-                    {% endif %}
+                        
                     </header>
                     <!-- Preview image figure-->
                     {% if post.imagen %}
-                        <figure class="mb-4"><img class="img-fluid rounded" style="height: 400px; width:900px; object-fit: cover; width:100%;"  src="{{ post.imagen.url }}"alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" style=" object-fit: cover; width:100%;"  src="{{ post.imagen.url }}"alt="..." /></figure>
                     {% endif %}
                     <!-- Post content-->
                     <section class="mb-5">
                         {{post.contenido|safe}}
                     </section>
                 </article>
-                {% if request.user == post.autor %}
+
+                
+                {% if request.user == post.autor  or request.user.is_superuser%}
     <div class="container mt-5 ">
         <div class="row"> 
             <div>

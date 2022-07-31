@@ -1,4 +1,5 @@
 from re import S
+from tkinter import Image
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
@@ -132,24 +133,40 @@ def iniciar_sesion(request):
 
 
 def registro(request):
+
+
     if request.method == 'POST':
         formulario_registro = FormularioRegistro(request.POST)
+        
+        
         if formulario_registro.is_valid():
+            
             formulario_registro.save()
+
             return redirect('iniciar_sesion')
         else:
             return render(request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro} )
+
     
     formulario_registro=FormularioRegistro()
+
+  
     
     return render (request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro})
 
 @login_required
 def perfil(request):
 
-    posts = Post.objects.all()
-    
-    return render (request, 'CuentaApp/perfil.html',{'posts':posts})
+    posts = Post.objects.filter(autor_id=request.user.id)
+
+    usuario = None
+    masdatosusuarios = None
+    try:
+        masdatosusuarios = MasDatosUsuarios.objects.all()
+    except:
+        usuario = User.objects.get(id=id)
+
+    return render (request, 'CuentaApp/perfil.html',{'posts':posts,'usuario':usuario,'masdatosusuarios':masdatosusuarios})
 
 @login_required
 
@@ -162,8 +179,8 @@ def editar_perfil(request):
         form_edit= FormularioEditarPerfil(request.POST, request.FILES)
         if form_edit.is_valid():
             data = form_edit.cleaned_data
-            user.first_name = data.get('first_name') if data.get('first_name') else user.first_name
-            user.last_name = data.get('last_name') if data.get('last_name') else user.last_name
+            mas_datos_usuarios.first_name = data.get('first_name') if data.get('first_name') else mas_datos_usuarios.first_name
+            mas_datos_usuarios.last_name = data.get('last_name') if data.get('last_name') else mas_datos_usuarios.last_name
             user.email = data.get('email') if data.get('email') else user.email
             mas_datos_usuarios.descripcion = data.get('descripcion') if data.get('descripcion') else mas_datos_usuarios.descripcion
             mas_datos_usuarios.avatar = data.get('avatar') if data.get('avatar') else mas_datos_usuarios.avatar
@@ -183,8 +200,8 @@ def editar_perfil(request):
     form_edit = FormularioEditarPerfil(
         initial={
             'email': user.email,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
+            'nombre': mas_datos_usuarios.first_name,
+            'apellido': mas_datos_usuarios.last_name,
             'descripcion': mas_datos_usuarios.descripcion,
             'avatar': mas_datos_usuarios.avatar,
         }
@@ -194,11 +211,14 @@ def editar_perfil(request):
 
 def perfil_usuario(request, id):
 
-    usuario = User.objects.get(id=id)
-    informacion = MasDatosUsuarios.objects.get(id=id)
-    posts = Post.objects.all()
+    posts = Post.objects.filter(autor=id)
+    usuario = None
+    masdatosusuarios = None
+    try:
+        masdatosusuarios = MasDatosUsuarios.objects.get(user=id)
+    except:
+        usuario = User.objects.get(id=id)
+        
 
-
-
-    return render (request, 'CuentaApp/perfil_usuario.html', {"posts":posts,"usuario":usuario,"informacion":informacion})
+    return render (request, 'CuentaApp/perfil_usuario.html', {"posts":posts,"usuario":usuario,"masdatosusuarios":masdatosusuarios})
 

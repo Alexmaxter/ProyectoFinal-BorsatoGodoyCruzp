@@ -8,11 +8,14 @@ from django.contrib.auth.decorators import login_required
 def blog(request):
 
     posts=Post.objects.all().order_by("-id")
+    blog_vacio = posts.count()
+
+    
     # categoria = Categoria.objects.all()
+    
 
 
-
-    return render(request, "BlogApp/blog.html",{'posts':posts})
+    return render(request, "BlogApp/blog.html",{'posts':posts,'blog_vacio':blog_vacio})
 
 
 # def categoria(request,categoria_id):
