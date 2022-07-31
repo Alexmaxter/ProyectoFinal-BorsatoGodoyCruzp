@@ -3,7 +3,7 @@ from BlogApp.models import Post
 from BlogApp.forms import FormularioPost, FormularioBusqueda
 from django.contrib.auth.decorators import login_required
 
-# from CuentaApp.models import MasDatosUsuarios
+# from accounts.models import MasDatosUsuarios
 
 def blog(request):
 

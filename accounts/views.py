@@ -25,15 +25,15 @@ def iniciar_sesion(request):
                 django_login (request, user)
                 
                 return redirect('inicio')
-                return render (request, 'CuentaApp/iniciar_sesion.html', {})
+                return render (request, 'accounts/iniciar_sesion.html', {})
             else:
-                return render(request, 'CuentaApp/iniciar_sesion.html', {'form_login': form_login})
+                return render(request, 'accounts/iniciar_sesion.html', {'form_login': form_login})
         else:
-            return render(request, 'CuentaApp/iniciar_sesion.html', {'form_login': form_login})
+            return render(request, 'accounts/iniciar_sesion.html', {'form_login': form_login})
             
     
     form_login = FormularioInicioSesion()
-    return render(request, 'CuentaApp/iniciar_sesion.html', {'form_login': form_login})
+    return render(request, 'accounts/iniciar_sesion.html', {'form_login': form_login})
 
 
 def registro(request):
@@ -49,14 +49,14 @@ def registro(request):
 
             return redirect('iniciar_sesion')
         else:
-            return render(request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro} )
+            return render(request, 'accounts/registro.html', {'formulario_registro': formulario_registro} )
 
     
     formulario_registro=FormularioRegistro()
 
   
     
-    return render (request, 'CuentaApp/registro.html', {'formulario_registro': formulario_registro})
+    return render (request, 'accounts/registro.html', {'formulario_registro': formulario_registro})
 
 @login_required
 def perfil(request):
@@ -70,7 +70,7 @@ def perfil(request):
     except:
         usuario = User.objects.get(id=id)
 
-    return render (request, 'CuentaApp/perfil.html',{'posts':posts,'usuario':usuario,'masdatosusuarios':masdatosusuarios})
+    return render (request, 'accounts/perfil.html',{'posts':posts,'usuario':usuario,'masdatosusuarios':masdatosusuarios})
 
 @login_required
 
@@ -98,7 +98,7 @@ def editar_perfil(request):
             return redirect('perfil')
         
         else:
-            return render(request, 'CuentaApp/editar_perfil.html', {'form_edit':form_edit} )    
+            return render(request, 'accounts/editar_perfil.html', {'form_edit':form_edit} )    
             
     
     form_edit = FormularioEditarPerfil(
@@ -111,7 +111,7 @@ def editar_perfil(request):
         }
     )
 
-    return render (request, 'CuentaApp/editar_perfil.html', {'form_edit':form_edit})
+    return render (request, 'accounts/editar_perfil.html', {'form_edit':form_edit})
 
 def perfil_usuario(request, id):
 
@@ -124,9 +124,9 @@ def perfil_usuario(request, id):
         usuario = User.objects.get(id=id)
         
 
-    return render (request, 'CuentaApp/perfil_usuario.html', {"posts":posts,"usuario":usuario,"masdatosusuarios":masdatosusuarios})
+    return render (request, 'accounts/perfil_usuario.html', {"posts":posts,"usuario":usuario,"masdatosusuarios":masdatosusuarios})
 
 class ChangePasswordView(PasswordChangeView, PasswordChangeDoneView):
-    template_name = 'CuentaApp/cambiar_contrasegna.html'
-    succes_url = '/CuentaApp/perfil/'
+    template_name = 'accounts/perfil/editar_perfil/cambiar_contrasegna.html'
+    succes_url = '/accounts/perfil/'
     

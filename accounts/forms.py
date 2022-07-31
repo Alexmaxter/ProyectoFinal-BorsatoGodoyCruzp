@@ -28,7 +28,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 
-from CuentaApp.models import MasDatosUsuarios
+from accounts.models import MasDatosUsuarios
 
 class FormularioInicioSesion(AuthenticationForm):
     username = UsernameField(label=False,widget=forms.TextInput(attrs={"autofocus": True,'class': 'form-control','placeholder': 'Nombre de usuario'}))
@@ -60,4 +60,3 @@ class FormularioEditarPerfil(forms.Form):
     # password1= forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder': 'Contraseña'}), required=False)
     # password2= forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder': 'Repetir contraseña'}), required=False)
     avatar = forms.ImageField(label=False,required=False)
-    
