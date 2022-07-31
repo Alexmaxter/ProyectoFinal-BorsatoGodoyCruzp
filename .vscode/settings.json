@@ -1,5 +1,0 @@
-{
-  "editor.formatOnSave": true,
-  "html.format.indentHandlebars": true,
-  "python.formatting.provider": "autopep8"
-}

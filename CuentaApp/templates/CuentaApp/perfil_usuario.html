@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>Perfil de {{usuario}}- BlogCoder</title>
+<title>Perfil - BlogCoder</title>
 {% endblock titulo %}
 
 {% block contenido %}
@@ -24,15 +24,14 @@
                 </div>
                 <div class="text-center mt-3">
 
-                    {% if usuario.user == masdatosusuarios.user  %}
-                        <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{request.user.username}}</span>
-                    
-                    {% elif usuario.user != None %}
-                        <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{masdatosusuarios.user}}</span>
-                        
-
+                    {% if request.user == masdatosusuarios.user  %}
+                    <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{request.user}}</span>
                     {% else %}
-                    <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{masdatosusuarios.user}}</span>
+                    
+                    <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{usuario}}</span>
+                    
+
+                  
                     {% endif %}
 
                     
@@ -54,7 +53,7 @@
                     
                     
                     <div class="buttons" >
-                        {% if request.id == masdatosusuarios.user.id %}
+                        {% if request.user.id == masdatosusuarios.user.id %}
                         <a class="btn btn-secondary px-4 ms-3" href="{#" style="width:40%; margin:1rem;">Mensajes</a>
                         {% else %}
                         <button class="btn btn-outline-primary px-4">Enviar Mensaje</button>
@@ -62,7 +61,7 @@
                     </div>
 
                     <div class="buttons" >
-                        {% if request.id == masdatosusuarios.user.id %} 
+                        {% if request.user.id == masdatosusuarios.user.id %} 
                         <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %} style="margin: 0rem 1rem 0rem 1rem;;">Salir</a>
                         <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
 
