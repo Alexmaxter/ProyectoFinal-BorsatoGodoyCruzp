@@ -7,7 +7,7 @@ from .models import MasDatosUsuarios
 from django.contrib.auth.decorators import login_required
 from .forms import FormularioInicioSesion, FormularioRegistro, FormularioEditarPerfil
 from BlogApp.models import Post
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 
 from django.contrib.auth.models import User
 
@@ -89,8 +89,8 @@ def editar_perfil(request):
             mas_datos_usuarios.descripcion = data.get('descripcion') if data.get('descripcion') else mas_datos_usuarios.descripcion
             mas_datos_usuarios.avatar = data.get('avatar') if data.get('avatar') else mas_datos_usuarios.avatar
             
-            if data.get('password1') and data.get('password1') == data.get('password2'):
-                user.set_password(data.get('password1'))
+            # if data.get('password1') and data.get('password1') == data.get('password2'):
+            #     user.set_password(data.get('password1'))
             
             user.save()
             mas_datos_usuarios.save()
@@ -126,7 +126,7 @@ def perfil_usuario(request, id):
 
     return render (request, 'CuentaApp/perfil_usuario.html', {"posts":posts,"usuario":usuario,"masdatosusuarios":masdatosusuarios})
 
-class ChangePasswordView(PasswordChangeView):
+class ChangePasswordView(PasswordChangeView, PasswordChangeDoneView):
     template_name = 'CuentaApp/cambiar_contrasegna.html'
-    succes_url = '/CuentaApp/perfil'
+    succes_url = '/CuentaApp/perfil/'
     

@@ -17,14 +17,13 @@
                 </div>
 
 
-                <form action={% url 'editar_perfil' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+                <form action={% url 'cambiar_contrasegna' %} method="post" enctype="multipart/form-data" style="text-align: left;">
 
-                    <a href={% url  'cambiar_contrasegna' %}>Cambiar</a>
                     {% csrf_token %}
                     <table>
                         {{form.as_table}}
                     </table>
-                    <a>Cambiar</a>
+                    <button>Guardar</button>
                 </form>
                 
     
