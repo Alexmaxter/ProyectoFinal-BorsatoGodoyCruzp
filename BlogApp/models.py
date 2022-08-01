@@ -1,4 +1,5 @@
 
+from re import UNICODE
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
@@ -21,7 +22,6 @@ class Post(models.Model):
         verbose_name_plural = "posts"
 
     def __str__(self):
-
         return f"{self.titulo}"
 
     def imagenAdmin(self):
@@ -30,3 +30,16 @@ class Post(models.Model):
         else:
             return 'Sin imagen'
     imagenAdmin.short_description = 'Imagen'
+
+
+class Comentario(models.Model):
+
+    ientrada = models.ForeignKey(Post, on_delete=models.CASCADE)
+    creado = models.DateTimeField(auto_now_add=True)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    contenido = models.TextField(blank=True, null=True)
+
+    class Meta:
+
+        verbose_name = "comentario"
+        verbose_name_plural = "comentarios"

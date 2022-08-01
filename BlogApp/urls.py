@@ -1,4 +1,4 @@
-from .views import blog, crear_post, buscar_post, post, editar_post, eliminar_post
+from .views import blog, crear_post, buscar_post, post, editar_post, eliminar_post, comentar
 from django.urls import path
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('post/<int:id>/', post, name='post'),
     path('editar_post/<int:id>/', editar_post, name='editar_post'),
     path('eliminar/<int:id>/', eliminar_post, name='eliminar_post'),
+    path('comentar/<int:id>/', comentar, name='comentar'),
 ]
