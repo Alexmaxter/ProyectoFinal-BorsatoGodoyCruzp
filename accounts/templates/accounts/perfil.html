@@ -36,12 +36,11 @@
                     {% endif %}
                     
                     <div class="px-4 mt-1">
-                        {% if masdatosusuarios.descripcion == None %}
+                        {% if user.masdatosusuarios.descripcion == None %}
                             <p class="fonts">No hay descripción</p>
                         {% else %}
-                            <p class="fonts">{{masdatosusuarios.descripcion}}</p>
+                            <p class="fonts">{{user.masdatosusuarios.descripcion}}</p>
                         {% endif %}
-                    
 
                     </div>
                     

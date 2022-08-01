@@ -1,9 +1,8 @@
-from asyncio.windows_events import NULL
-from django.contrib.auth.models import User
-from random import randrange, choice
-from django.shortcuts import render
 from BlogApp.forms import FormularioBusqueda
+from django.contrib.auth.models import User
+from django.shortcuts import render
 from BlogApp.models import Post
+from random import choice
 
 
 def inicio(request):
@@ -29,22 +28,15 @@ def inicio(request):
         while total_post  > 0:
             next(gen)
     except:
-        ...
         total_post -=1
-
 
     try:
         ultimo_post=Post.objects.latest('id')
 
     except :
         ...
-        
-    
-    # categoria = Categoria.objects.all()
 
-    total_usuarios=User.objects.count()
-
-
+    total_usuarios = User.objects.count()
     consulta = request.GET.get("titulo")
 
     if consulta:
@@ -55,10 +47,9 @@ def inicio(request):
 
     formulario_busqueda = FormularioBusqueda()
     
-    
-    return render(request, "inicio.html", {"users":users,"ultimo_post": ultimo_post,
+    return render(request, "inicio.html", 
+    {"users":users,"ultimo_post": ultimo_post,
     "listado_post": listado_post,
     "post_random":post_random,
     "formulario_busqueda": formulario_busqueda,
     "total_usuarios":total_usuarios})
-

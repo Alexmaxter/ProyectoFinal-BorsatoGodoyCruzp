@@ -1,10 +1,10 @@
-from django.conf import settings
-from django.urls import path, reverse_lazy
-from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from .views import iniciar_sesion, perfil, registro, editar_perfil, perfil_usuario, ChangePasswordView
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LogoutView
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.urls import path
+
 
 urlpatterns = [
     path('iniciar_sesion/', iniciar_sesion, name='iniciar_sesion'),

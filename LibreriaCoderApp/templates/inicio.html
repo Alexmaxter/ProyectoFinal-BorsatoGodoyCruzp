@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block titulo %}
 <title>Inicio - BlogCoder</title>
 {% endblock titulo %}
+
 {% block contenido %}
 
 {% if ultimo_post == None %}
@@ -134,7 +136,7 @@
               
               {% endfor %}
               
-              {% endif %}
+             {% endif %}
         </div>
       </section>
       <!--Section: Content-->

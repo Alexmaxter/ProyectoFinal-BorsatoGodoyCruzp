@@ -7,30 +7,25 @@
 
 {% block contenido %}
 
-<div class="container mt" style="margin: 4rem auto;">
-    <div class="row d-flex justify-content-center">      
-        <div class="col-md-7" style=" width: 100%;">       
+            <div class="contenedorFormulario" style="margin: 2rem 18rem;">
                 
-            <div class="contenedorFormulario" style="margin: 2rem 12rem 2rem 12rem;">
-                <div style="padding: 2rem 6rem 0rem 4rem;">
-                    <span class="TituloPost" style="margin:auto 0">Cambiar Contraseña</span>
-                </div>
+                <span class="TituloPost" style="margin: 2rem">Cambiar Contraseña</span>
+                
 
 
-                <form action={% url 'cambiar_contrasegna' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+                <form action={% url 'cambiar_contrasegna' %} method="post" enctype="multipart/form-data" style="padding: 2rem" >
 
                     {% csrf_token %}
-                    <table>
-                        {{form.as_table}}
-                    </table>
-                    <button>Guardar</button>
+                        {{form.as_p}}
+                    <div style=" overflow:hidden">
+                    <button class="btn btn-primary" style="margin: 0rem 1rem 0rem 1rem;float:right;">Guardar</button>
+                    </div>
                 </form>
                 
     
             </div>
-        </div>
-    </div>
-</div>
+            </div>
+ 
                 
                     
             

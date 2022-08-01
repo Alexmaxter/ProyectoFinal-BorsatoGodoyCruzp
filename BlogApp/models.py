@@ -1,7 +1,7 @@
 
-from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from django.db import models
 
 class Post(models.Model):
     
@@ -14,9 +14,10 @@ class Post(models.Model):
     actualizado=models.DateTimeField(auto_now_add=True)
 
     class Meta:
+
         verbose_name = "post"
         verbose_name_plural = "posts"
 
     def __str__(self):
-        return f"{self.titulo}"
 
+        return f"{self.titulo}"
