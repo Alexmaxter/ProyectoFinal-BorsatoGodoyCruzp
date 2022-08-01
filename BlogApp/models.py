@@ -34,12 +34,15 @@ class Post(models.Model):
 
 class Comentario(models.Model):
 
-    ientrada = models.ForeignKey(Post, on_delete=models.CASCADE)
-    creado = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     contenido = models.TextField(blank=True, null=True)
+    creado = models.DateTimeField(auto_now_add=True)
 
     class Meta:
 
         verbose_name = "comentario"
         verbose_name_plural = "comentarios"
+
+    def __str__(self):
+        return str("%s %s " % (self.ientrada, self.mensaje[:60]))

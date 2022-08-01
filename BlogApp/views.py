@@ -1,9 +1,11 @@
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from BlogApp.forms import FormularioPost, FormularioBusqueda, FormularioComentario
+from urllib import request
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, redirect
+from BlogApp.forms import FormularioComentario, FormularioPost, FormularioBusqueda
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView
 from BlogApp.models import Comentario, Post
+from django.urls import reverse
 
 
 def blog(request):
@@ -43,8 +45,8 @@ def crear_post(request):
 def post(request, id):
 
     post = Post.objects.get(id=id)
-    comentarios = Comentario.objects.filter(ientrada=id)
-    cantidad_comentarios = Comentario.objects.filter(ientrada=id).count()
+    comentarios = Comentario.objects.filter(post_id=id)
+    cantidad_comentarios = Comentario.objects.filter(post_id=id).count()
     return render(request, "BlogApp/post.html", {"post": post, "comentarios": comentarios, "cantidad_comentarios": cantidad_comentarios})
 
 
@@ -107,20 +109,3 @@ def eliminar_post(request, id):
     post.delete()
 
     return redirect('blog')
-
-
-@ login_required
-def comentar(request, pk):
-
-    p = request.POST
-
-    if p.has_key('comentario') and p("comentario"):
-        comentario = Comentario(entrada=Post.objects.get(pk=pk))
-        print(pk)
-        cf = FormularioComentario(p, instance=comentario)
-        cf.fields["autor"].required = False
-
-        comentario = cf.save(commit=False)
-        comentario.save()
-
-    return HttpResponseRedirect(reverse("post"), args=(pk))

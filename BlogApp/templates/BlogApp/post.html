@@ -138,36 +138,10 @@
         </div>
         {% endfor %}
 
-        <form class="form-block">
-          <div class="row">
-            <div class="col-xs-12 col-sm-6">
-         
-            <div class="col-xs-4">
-              <div class="form-group">
-                <textarea
-                  class="form-input"
-                  required=""
-                  placeholder="Haz un comentario"
-                ></textarea>
-              </div>
-            </div>
-            <a class="btn btn-primary pull-right">Publicar</a>
-          </div>
-        </form>
       </div>
    
-
-
-
-    <form action="{% url 'comentar' post.id %}" method="POST">
-      {% csrf_token %}
-
-      <p>Comentario {{formulario_comentario.contenido|linebreaks}}</p>
-
-      <p><input type="submit" value="Enviar" /></p>
-    </form>
   </div>
 </div>
 </div>
-</div>
+</div>  
 {% endblock contenido %}

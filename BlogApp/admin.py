@@ -12,8 +12,8 @@ class PostAdmin(admin.ModelAdmin):
 
 class ComentarioAdmin(admin.ModelAdmin):
 
-    reaonly_fields = ('creado', 'ientrada')
-    list_display = ('autor', 'creado')
+    reaonly_fields = ('creado', 'post_id')
+    list_display = ("contenido", 'autor', 'creado')
     list_filter = ('autor', 'creado')
 
 
