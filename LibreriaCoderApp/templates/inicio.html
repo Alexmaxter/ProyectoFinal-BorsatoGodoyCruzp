@@ -82,8 +82,14 @@
             <!-- Side widget-->
             <div class="card mb-4">
                 <div class="card-header">Usuarios registrados: <span class="badge bg-success text-decoration-none link-light" style="border-radius: 25%">{{total_usuarios}}</span></div>
-                <div class="card-body">{% for user in users %}
-                    <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;">{{user.username}}</span> </a>
+                <div class="card-body">
+                  {% for user in users %}
+                  {% if user.is_superuser %}
+                    <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;"><img src="{{user.masdatosusuarios.avatar.url}}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem">{{user.username}}</span> </a>
+                  {% else %}
+                  <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none"><span class="badge bg-secondary" style="text-transform:capitalize;"><img src="{{user.masdatosusuarios.avatar.url}}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem; color:#6c757d;">{{user.username}}</span> </a>
+
+                    {% endif %}
                     {% endfor %}</div>
             </div>
         </div>

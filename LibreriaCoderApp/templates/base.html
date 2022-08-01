@@ -67,11 +67,11 @@
           
           </ul>
         </div>
-        <div style="background-color:#198754;border-radius: 0rem 2rem 2rem 0rem;border-style:solid;border-width:1px;border-color:#198754;">
+        <div style="background-color:#198754;border-radius: 0rem 2rem 2rem 0rem;border-style:solid;border-width:1px;border-color:#198754;object-fit: cover;">
         {% if request.user.masdatosusuarios.avatar %}
-        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:40px;width:40px;;border: 2px;"  alt=""class="border border-success">
+        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:40px;width:40px;object-fit: cover;"  alt=""class="border border-success">
         {% else %}
-        <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%;border: 2px; height:40px;width:40px;" alt="" class="border border-success;">
+        <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%; height:40px;width:40px;object-fit: cover;" alt="" class="border border-success;">
         {% endif %}
         {% else %}
         <li class="nav-item"><a class="nav-link" href={% url 'iniciar_sesion' %} style="border-radius:0.3rem; border-style:solid;border-width:1px;border-color:#198754;color:#198754;">INICIAR SESIÓN</a></li>

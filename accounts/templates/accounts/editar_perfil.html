@@ -9,12 +9,12 @@
 
 <div class="container mt" style="margin: 4rem auto;">
     <div class="row d-flex justify-content-center">   
-            <div class="contenedorFormulario" style="margin: 2rem 12rem 2rem 12rem;">
+            <div class="contenedorFormulario" style="width: 60%;">
                 <div style="padding: 1rem">
                     <span class="TituloPost" style="margin:auto 0">Editar perfil</span>
                 </div>
 
-                <form action={% url 'editar_perfil' %} method="post" enctype="multipart/form-data" style="text-align: left;">
+                <form action={% url 'editar_perfil' %} method="post" enctype="multipart/form-data" style="margin:0 auto; width:100%;">
                     
                     
                         {% csrf_token %}
@@ -22,6 +22,10 @@
                         <p style="margin: 1rem"> {{form_edit.first_name }} </p>
                         <p style="margin: 1rem"> {{form_edit.last_name }} </p>
                         <p style="margin: 1rem"> {{form_edit.descripcion }} </p>
+                        <p style="margin: 1rem"> {{form_edit.web }} </p>
+                        <p style="margin: 1rem"> {{form_edit.facebook }} </p>
+                        <p style="margin: 1rem"> {{form_edit.twitter }} </p>
+                        <p style="margin: 1rem"> {{form_edit.instagram }} </p>
                         <div style="text-align: center; ">
                             <p style="margin: 1rem"> {{form_edit.avatar }} </p>
                         </div>

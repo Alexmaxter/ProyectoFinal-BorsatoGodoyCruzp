@@ -24,22 +24,45 @@
                 
                 <div class="text-center mt-3">
                     <span class="bg-success p-1 px-4 rounded text-white" style="text-transform: capitalize;">{{request.user.username}}</span>
-                    
                     {% if request.user.masdatosusuarios.first_name and request.user.masdatosusuarios.last_name %}
-                        <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.first_name}} {{request.user.masdatosusuarios.last_name}}</h5>
+                    <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.first_name}} {{request.user.masdatosusuarios.last_name}}</h5>
                     {% elif request.user.masdatosusuarios.first_name %}
-                        <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.first_name}}</h5>
+                    <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.first_name}}</h5>
                     {% elif request.user.masdatosusuarios.last_name %}
-                        <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.last_name}}</h5>
+                    <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.last_name}}</h5>
                     {% else %}
-                        <h5 class="mt-2 mb-0">John Doe</h5>
+                    <h5 class="mt-2 mb-0">John Doe</h5>
                     {% endif %}
-                    
-                    <div class="px-4 mt-1">
-                        {% if user.masdatosusuarios.descripcion == None %}
-                            <p class="fonts">No hay descripción</p>
+                    <div style="margin: 1rem">
+
+                        {% if user.masdatosusuarios.facebook %}
+                        <a href="{{user.masdatosusuarios.facebook}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoFacebook.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
                         {% else %}
-                            <p class="fonts">{{user.masdatosusuarios.descripcion}}</p>
+                        <img src="{% static 'LibreriaCoderApp/assets/img/IconoFacebook.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;">
+                        {% endif %}
+                        
+                        {% if user.masdatosusuarios.twitter %}
+                        <a href="{{user.masdatosusuarios.twitter}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoTwitter.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
+                        {% else %}
+                        <img src="{% static 'LibreriaCoderApp/assets/img/IconoTwitter.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;">
+                        {% endif %}
+
+
+                        {% if user.masdatosusuarios.instagram %}
+                        <a href="{{user.masdatosusuarios.instagram}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoInstagram.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
+                        {% else %}
+                        <img src="{% static 'LibreriaCoderApp/assets/img/IconoInstagram.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;">
+                        {% endif %}
+
+
+                    
+                    </div>
+                    
+                    <div style="margin: 1rem"> 
+                        {% if user.masdatosusuarios.descripcion == None %}
+                            <span>No hay descripción</span>
+                        {% else %}
+                            <span>{{user.masdatosusuarios.descripcion}}</span>
                         {% endif %}
 
                     </div>
