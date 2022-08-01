@@ -3,6 +3,7 @@ from tkinter import Image
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
+from django.urls import reverse_lazy
 from .models import MasDatosUsuarios
 from django.contrib.auth.decorators import login_required
 from .forms import FormularioInicioSesion, FormularioRegistro, FormularioEditarPerfil
@@ -127,6 +128,4 @@ def perfil_usuario(request, id):
     return render (request, 'accounts/perfil_usuario.html', {"posts":posts,"usuario":usuario,"masdatosusuarios":masdatosusuarios})
 
 class ChangePasswordView(PasswordChangeView, PasswordChangeDoneView):
-    template_name = 'accounts/perfil/editar_perfil/cambiar_contrasegna.html'
-    succes_url = '/accounts/perfil/'
-    
+    template_name = 'accounts/cambiar_contrasegna.html'
