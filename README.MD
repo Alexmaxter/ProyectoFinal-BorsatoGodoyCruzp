@@ -47,3 +47,7 @@
 - Apartado redes del usuario
 - Cambiar contraseña
 - Cerrar sesión
+
+7. Apartado Admin
+- Se ve usuarios, posteos y comentarios
+- Cada usuario y post tiene su imagen
