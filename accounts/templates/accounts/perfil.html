@@ -30,8 +30,6 @@
                     <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.first_name}}</h5>
                     {% elif request.user.masdatosusuarios.last_name %}
                     <h5 class="mt-2 mb-0">{{request.user.masdatosusuarios.last_name}}</h5>
-                    {% else %}
-                    <h5 class="mt-2 mb-0">John Doe</h5>
                     {% endif %}
                     <div style="margin: 1rem">
 
@@ -58,9 +56,7 @@
                     </div>
                     
                     <div style="margin: 1rem"> 
-                        {% if user.masdatosusuarios.descripcion == None %}
-                            <span>No hay descripción</span>
-                        {% else %}
+                        {% if user.masdatosusuarios.descripcion %}
                             <span>{{user.masdatosusuarios.descripcion}}</span>
                         {% endif %}
 

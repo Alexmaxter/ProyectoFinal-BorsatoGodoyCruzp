@@ -43,8 +43,6 @@
                     
                     {% if masdatosusuarios.last_name %}
                         <h5 class="mt-2 mb-0">{{masdatosusuarios.first_name}} {{masdatosusuarios.last_name}}</h5>
-                    {% else %}
-                        <h5 class="mt-2 mb-0">John Doe</h5>
                     {% endif %}
 
                     <div style="margin: 1rem">
@@ -72,9 +70,7 @@
                     
                     <div class="px-4 mt-1">
 
-                        {% if masdatosusuarios.descripcion == None %}
-                            <p class="fonts">No hay descripción</p>
-                        {% else %}
+                        {% if masdatosusuarios.descripcion %}
                             <p class="fonts">{{masdatosusuarios.descripcion}}</p>
                         {% endif %}
                     
