@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Post, Comentario
+from .models import Comment, Post
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -9,13 +9,17 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('imagenAdmin', 'titulo', 'autor', 'creado')
     list_filter = ('autor', 'creado')
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'body', 'post', 'created_on', 'active')
+    list_filter = ('active', 'created_on')
+    search_fields = ('name', 'body')
+    actions = ['approve_comments']
 
-class ComentarioAdmin(admin.ModelAdmin):
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)
 
-    reaonly_fields = ('creado', 'post_id')
-    list_display = ("contenido", 'autor', 'creado')
-    list_filter = ('autor', 'creado')
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Comentario, ComentarioAdmin)
+

@@ -1,7 +1,8 @@
 from ckeditor.fields import RichTextFormField
 from django import forms
 
-from BlogApp.models import Comentario
+
+from BlogApp.models import Comment
 
 
 class FormularioPost(forms.Form):
@@ -14,10 +15,9 @@ class FormularioPost(forms.Form):
         attrs={'class': 'form-control', 'placeholder': 'Contenido'}), label="")
     imagen = forms.ImageField(label="", required=False)
 
+    class Meta:
 
-class Meta:
-
-    autor = ('autor',)
+        autor = ('autor',)
 
 
 class FormularioBusqueda(forms.Form):
@@ -25,9 +25,12 @@ class FormularioBusqueda(forms.Form):
     titulo = forms.CharField(max_length=30, required=False, label=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Buscar por título'}))
 
-
-class FormularioComentario(forms.ModelForm):
-
+class CommentForm(forms.ModelForm):
+    
+    body = RichTextFormField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Contenido'}), label="")
     class Meta:
-        model = Comentario
-        exclude = ["post"]
+        model = Comment
+        fields = ('body',)
+
+

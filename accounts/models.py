@@ -1,3 +1,4 @@
+from email.policy import default
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from django.db import models

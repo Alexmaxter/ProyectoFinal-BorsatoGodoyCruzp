@@ -49,23 +49,21 @@
 
                     <div style="margin: 1rem">
                         
+                        {% if masdatosusuarios.web %}
+                        <a href="{{masdatosusuarios.web}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoSitioWeb.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
+                       {% endif %}
+
                         {% if masdatosusuarios.facebook %}
                         <a href="{{masdatosusuarios.facebook}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoFacebook.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
-                        {% else %}
-                        <img src="{% static 'LibreriaCoderApp/assets/img/IconoFacebook.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;">
                         {% endif %}
                         
                         {% if masdatosusuarios.twitter %}
                         <a href="{{masdatosusuarios.twitter}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoTwitter.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
-                        {% else %}
-                        <img src="{% static 'LibreriaCoderApp/assets/img/IconoTwitter.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;">
                         {% endif %}
 
 
                         {% if masdatosusuarios.instagram %}
                         <a href="{{masdatosusuarios.instagram}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoInstagram.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
-                        {% else %}
-                        <img src="{% static 'LibreriaCoderApp/assets/img/IconoInstagram.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;">
                         {% endif %}
 
 

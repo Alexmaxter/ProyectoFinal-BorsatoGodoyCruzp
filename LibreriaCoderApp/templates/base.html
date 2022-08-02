@@ -1,50 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% load static %}
+      {% load static %}
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap"rel="stylesheet"/>
     {% block titulo %}
-    <title>Base</title> - BlogCoder
+      <title>Base</title> - BlogCoder
     {% endblock titulo %}
-    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href={% static 'LibreriaCoderApp/assets/favicon.ico'%} />
-    <!-- Core theme CSS (includes Bootstrap)-->
     <link href={% static 'LibreriaCoderApp\css\styles.css' %} rel="stylesheet"/>
   </head>
 
   <body>
-    <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: solid;border-color:#dee2e6;border-width:1px;">
       <div class="container">
-        <a class="navbar-brand Logo" href={% url 'inicio' %}
-          >BLOG<span class="Logo" style="color: #198754;">CODER</span></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <a class="navbar-brand Logo" href={% url 'inicio' %}>BLOG<span class="Logo" style="color: #198754;">CODER</span></a>
+        <button class="navbar-toggler"type="button"data-bs-toggle="collapse"data-bs-target="#navbarSupportedContent"aria-controls="navbarSupportedContent"aria-expanded="false"aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link  {% if request.path == "/inicio/" %}active{% endif %}" aria-current="page" href={% url 'inicio' %}
-                >INICIO</a
-              >
+              <a class="nav-link  {% if request.path == "/inicio/" %}active{% endif %}" aria-current="page" href={% url 'inicio' %}>INICIO</a>
             </li>
 
             <li class="nav-item">
@@ -63,82 +43,31 @@
               {{request.user.username}}
             </a>
           </li>
-          
-          
           </ul>
         </div>
+
         <div style="background-color:#198754;border-radius: 0rem 2rem 2rem 0rem;border-style:solid;border-width:1px;border-color:#198754;object-fit: cover;">
-        {% if request.user.masdatosusuarios.avatar %}
-        <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:40px;width:40px;object-fit: cover;"  alt=""class="border border-success">
-        {% else %}
-        <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%; height:40px;width:40px;object-fit: cover;" alt="" class="border border-success;">
-        {% endif %}
-        {% else %}
-        <li class="nav-item"><a class="nav-link" href={% url 'iniciar_sesion' %} style="border-radius:0.3rem; border-style:solid;border-width:1px;border-color:#198754;color:#198754;">INICIAR SESIÓN</a></li>
-        <li class="nav-item"><a class="nav-link" style="background-color:#198754; border-radius:0.3rem; color:white; margin: 0rem 0rem 0rem 1rem;border-color:#198754;border-style:solid;border-width:1px;border-width:1px;" href={% url 'registro' %}>REGISTRARSE</a></li>
-        {% endif %}
-      </div>
+          {% if request.user.masdatosusuarios.avatar %}
+            <img src={{request.user.masdatosusuarios.avatar.url}} style="border-radius: 50%;height:40px;width:40px;object-fit: cover;"  alt=""class="border border-success">
+          {% else %}
+            <img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius: 50%; height:40px;width:40px;object-fit: cover;" alt="" class="border border-success;">
+          {% endif %}
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href={% url 'iniciar_sesion' %} style="border-radius:0.3rem; border-style:solid;border-width:1px;border-color:#198754;color:#198754;">INICIAR SESIÓN</a></li>
+            <li class="nav-item"><a class="nav-link" style="background-color:#198754; border-radius:0.3rem; color:white; margin: 0rem 0rem 0rem 1rem;border-color:#198754;border-style:solid;border-width:1px;border-width:1px;" href={% url 'registro' %}>REGISTRARSE</a></li>
+          {% endif %}
+          </div>
       </div>
     </nav>
-    <!-- CONTENIDO -->
-    {% block contenido %}
     
-    <!-- Content section-->
-    <section class="py-5">
-      <div class="container my-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h2>Full Width Backgrounds</h2>
-            <p class="lead">
-              A single, lightweight helper class allows you to add engaging,
-              full width background images to sections of your page.
-            </p>
-            <p class="mb-0">
-              The universe is almost 14 billion years old, and, wow! Life had no
-              problem starting here on Earth! I think it would be inexcusably
-              egocentric of us to suggest that we're alone in the universe.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Image element - set the background image for the header in the line below-->
-    <div
-      class="py-5 bg-image-full"
-      style="
-        background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800');
-      "
-    >
-      <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-      <div style="height: 20rem"></div>
-    </div>
-    <!-- Content section-->
-    <section class="py-5">
-      <div class="container my-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h2>Engaging Background Images</h2>
-            <p class="lead">
-              The background images used in this template are sourced from
-              Unsplash and are open source and free to use.
-            </p>
-            <p class="mb-0">
-              I can't tell you how many people say they were turned off from
-              science because of a science teacher that completely sucked out
-              all the inspiration and enthusiasm they had for the course.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    {% endblock contenido %}
+{% block contenido %}
+    
+{% endblock contenido %}
 
-    <!-- Footer-->
+
     <footer class="py-5 -light bg-light" style="border-top: solid;border-color:#dee2e6;border-width:1px ;width: 100%;">
       <div class="container">
-        <p class="m-0" style="text-align:center;">
-          Copyright &copy; LibreriaCoder 2022
-        </p>
+        <p class="m-0" style="text-align:center;">Copyright &copy; BlogCoder 2022</p>
       </div>
     </footer>
     

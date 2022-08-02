@@ -85,10 +85,19 @@
                 <div class="card-body">
                   {% for user in users %}
                   {% if user.is_superuser %}
+                    {% if user.masdatosusuarios.avatar %}
                     <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;"><img src="{{user.masdatosusuarios.avatar.url}}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem">{{user.username}}</span> </a>
-                  {% else %}
-                  <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none"><span class="badge bg-secondary" style="text-transform:capitalize;"><img src="{{user.masdatosusuarios.avatar.url}}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem; color:#6c757d;">{{user.username}}</span> </a>
+                    {% else %}
+                    <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none;"><span class="badge bg-success" style="text-transform:capitalize;"><img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem">{{user.username}}</span> </a>
 
+                    {% endif %}
+                    {% else %}
+                    {% if user.masdatosusuarios.avatar %}
+                  <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none"><span class="badge bg-secondary" style="text-transform:capitalize;"><img src="{{user.masdatosusuarios.avatar.url}}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem; color:#6c757d;">{{user.username}}</span> </a>
+                    {% else %}
+                  <a href='{% url "perfil_usuario" user.id %}' style="text-decoration:none"><span class="badge bg-secondary" style="text-transform:capitalize;"><img src="{% static 'LibreriaCoderApp/assets/img/AvatarPorDefecto.png' %}" style="border-radius:50%;height:20px;width:20px; object-fit: cover;margin-right: 0.5rem; color:#6c757d;">{{user.username}}</span> </a>
+
+                    {% endif %}
                     {% endif %}
                     {% endfor %}</div>
             </div>
