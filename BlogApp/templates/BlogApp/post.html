@@ -99,11 +99,11 @@
       <div class="alert alert-success" role="alert" >Se ha enviado el comentario! </div>
     {% else %}
       <h3>Deja un comentario!</h3>
-      <form method="post" style="margin-top: 1.3em;width: 100%">{% csrf_token %}
+      <form method="post" style="margin-top: 1.3em;width: 100%" action={% url 'post' post.id %} >{% csrf_token %}
         <div style="text-align: center; width:500px">
           <p style="margin: 1rem;"> {{comment_form.body }}{{comment_form.media}}</p>
         </div>
-        <div style="background-color:black; wid;"><button type="submit" class="btn btn-primary btn-lg" style="float: right;">Publicar</button></div>    
+        <div style="background-color:black; wid;"><button type="submit" class="btn btn-primary btn-lg" style="float: right;" autofocus>Publicar</button></div>    
       </form>
     {% endif %}
     </div>

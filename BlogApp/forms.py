@@ -25,6 +25,7 @@ class FormularioBusqueda(forms.Form):
     titulo = forms.CharField(max_length=30, required=False, label=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Buscar por título'}))
 
+
 class CommentForm(forms.ModelForm):
     
     body = RichTextFormField(widget=forms.TextInput(
@@ -32,5 +33,3 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-
-

@@ -18,13 +18,7 @@
                         
                         <img src="{% static 'LibreriaCoderApp/assets/img/PaginaVacia.png' %}" alt="" style="width: 50%;filter: grayscale(100%)">
                         <h2 class="fw-bolder TituloPost">¡Ups! No hay nada por aquí...</h2>
-                                
-                            
                     {% else %}
-                        
-                        
-                        
-                    
 <div  style="text-align: right; margin: 1rem 6rem 1rem 1rem"class=" bg-light">
     {% if request.user.is_authenticated %}
     <a class="btn btn-primary" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Crear post</a>
@@ -68,22 +62,10 @@
                   </div>
                 </div>
               </div>
-
-
-
-
-
-              
               {% endfor %}
-              
               {% endif %}
         </div>
       </section>
-      <!--Section: Content-->
     </div>
   </main>
-
-
-
-
 {% endblock contenido %}

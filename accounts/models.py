@@ -17,10 +17,12 @@ class MasDatosUsuarios(models.Model):
     instagram = models.URLField(null=True, blank=True)
     avatar = models.ImageField(upload_to='avatares', null=True, blank=True)
 
+
     class Meta:
 
         verbose_name = "usuario"
         verbose_name_plural = "usuarios"
+
 
     def __str__(self):
 
@@ -32,6 +34,7 @@ class MasDatosUsuarios(models.Model):
             {self.twitter}
             {self.instagram}
             {self.avatar}"""
+
 
     def avatarAdmin(self):
         if self.avatarAdmin:

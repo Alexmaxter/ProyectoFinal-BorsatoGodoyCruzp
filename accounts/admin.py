@@ -11,6 +11,6 @@ class MasDatosUsuariosAdmin(admin.ModelAdmin):
     def __str__(self):
 
         return "user"
-
+    
 
 admin.site.register(MasDatosUsuarios, MasDatosUsuariosAdmin)

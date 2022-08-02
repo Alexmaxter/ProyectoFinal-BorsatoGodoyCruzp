@@ -12,17 +12,11 @@
         <div class="contenedorFormulario"  style="margin: 2rem 18rem;  text-align: center;padding:2rem;">
             
             <img src="{% static 'LibreriaCoderApp/assets/img/PaginaVacia.png' %}" alt="" style="width: 50%;filter: grayscale(100%);">
-            <h2 class="fw-bolder TituloPost">¡Ups! No hay nada por aquí...</h2>
-                    
-                  
+            <h2 class="fw-bolder TituloPost">¡Ups! No hay nada por aquí...</h2>     
         {% else %}
 <div class="container mt-5  bs-light" style="  padding:2rem; margin-bottom: 2rem;">
     <div class="row" >
-        
-            
             <div class="col-lg-8 contenedorFormulario" style="background-color: white;padding:2rem;">
-            
-      
             <!-- Post content-->
 
             {% if ultimo_post %}
@@ -74,11 +68,8 @@
                           
                     </div>
                 </div>
-                    
 
-           
             <!-- Categories widget-->
-           
             <!-- Side widget-->
             <div class="card mb-4">
                 <div class="card-header">Usuarios registrados: <span class="badge bg-success text-decoration-none link-light" style="border-radius: 25%">{{total_usuarios}}</span></div>
@@ -143,12 +134,6 @@
                   </div>
                 </div>
               </div>
-
-
-
-
-              
-              
               {% endfor %}
               
              {% endif %}
@@ -157,6 +142,4 @@
       <!--Section: Content-->
     </div>
 </main>
-
-
 {% endblock contenido %}

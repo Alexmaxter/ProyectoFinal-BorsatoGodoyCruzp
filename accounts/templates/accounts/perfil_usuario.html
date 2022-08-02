@@ -39,7 +39,6 @@
                             {% endif %}
                   
                     {% endif %}
-
                     
                     {% if masdatosusuarios.last_name %}
                         <h5 class="mt-2 mb-0">{{masdatosusuarios.first_name}} {{masdatosusuarios.last_name}}</h5>
@@ -64,8 +63,6 @@
                         <a href="{{masdatosusuarios.instagram}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoInstagram.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
                         {% endif %}
 
-
-                    
                     </div>
                     
                     <div class="px-4 mt-1">
@@ -75,37 +72,20 @@
                         {% endif %}
                     
                     </div>
-                    
-                    
-                   
-                
                     <div class="buttons" >
                         {% if  request.user == masdatosusuarios.user   %} 
                         <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %} style="margin: 0rem 1rem 0rem 1rem;;">Salir</a>
                         <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
 
                         {% endif %}
-                    </div>
-                    
-                    
-                </div>
-                
-               
-                
-                
+                    </div>  
+                </div> 
             </div>
-            
-            
         </div>
-
         <div class="col-md-7" style=" width: 50%;">
-            
-
             <div class="card p-3 py-4 contenedorFormulario" style="border-radius: 0rem;">
                 {% if posts %}
                 <span class="TituloPost" style="margin:auto 0">Posteos realizados</span>
-                
-                
                 {% for post in posts %}
                 
                 {% if post.imagen %}
@@ -127,14 +107,7 @@
                         {% endif %}
                     </div>
             </div>
-            
-            
         </div>
-        
     </div>
-    
 </div>
-
-
-
 {% endblock contenido %}

@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('imagenAdmin', 'titulo', 'autor', 'creado')
     list_filter = ('autor', 'creado')
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'post', 'created_on', 'active')
@@ -18,7 +19,6 @@ class CommentAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
-
 
 
 admin.site.register(Post, PostAdmin)

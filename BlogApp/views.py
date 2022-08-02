@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 from BlogApp.models import Post
 
 
-
 def blog(request):
 
     posts = Post.objects.all().order_by("-id")
@@ -38,28 +37,22 @@ def crear_post(request):
 
     return render(request, 'BlogApp/crear_post.html', {'formulario_post': formulario_post})
 
+
 def post(request, id):
 
-    
     post = Post.objects.get(id=id)
-        
-
     comments = post.comments.filter(active=True)
     new_comment = None
-    # Comment posted
-
+   
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
 
-            # Create Comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
-            # Assign the     current post to the comment
             new_comment.post = post
             new_comment.name = request.user
-            # Save the comment to the database
             new_comment.save()
-            return redirect("blog")
+            return redirect('post', id)
     else:
         comment_form = CommentForm()
     return render(request, "BlogApp/post.html", {'post': post,

@@ -12,8 +12,6 @@
       <span class="TituloPost" style="margin:auto 0">Editar post</span>
       </div>
       <form action={% url 'editar_post' post.id %} method="post" enctype="multipart/form-data" style="text-align: left;">
-        
-        
         <table style="margin: 1rem auto">
           {% csrf_token %}
           <p style="margin: 1rem"> {{form.titulo }} </p>

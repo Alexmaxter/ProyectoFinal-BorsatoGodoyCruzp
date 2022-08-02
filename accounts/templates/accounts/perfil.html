@@ -51,15 +51,11 @@
                         <a href="{{user.masdatosusuarios.instagram}}" target="_blank"><img src="{% static 'LibreriaCoderApp/assets/img/IconoInstagram.png' %}" style= "margin:0.5rem;filter: invert(75%);width: 2rem;"></a>
                         {% endif %}
 
-
-                    
                     </div>
-                    
                     <div style="margin: 1rem"> 
                         {% if user.masdatosusuarios.descripcion %}
                             <span>{{user.masdatosusuarios.descripcion}}</span>
                         {% endif %}
-
                     </div>
                     
 
@@ -70,16 +66,8 @@
                         <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
                         
                     </div>
-                    
-                    
-                    
-                </div>
-                
-               
-                
-                
-            </div>
-            
+                </div> 
+            </div> 
         </div>
         <div class="col-md-7" style=" width: 50%;">
             
@@ -108,14 +96,8 @@
                     </div>
                {% endif %}
             </div>
-            
-            
         </div>
-        
     </div>
-    
 </div>
-
-
 
 {% endblock contenido %}
