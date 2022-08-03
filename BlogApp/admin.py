@@ -6,7 +6,7 @@ from .models import Comment, Post
 class PostAdmin(admin.ModelAdmin):
 
     reaonly_fields = ('creado', 'actualizado', 'id')
-    list_display = ('imagenAdmin', 'titulo', 'autor', 'creado')
+    list_display = ( 'titulo', 'autor', 'creado')
     list_filter = ('autor', 'creado')
 
 

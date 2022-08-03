@@ -22,8 +22,8 @@
 <div  style="text-align: right; margin: 1rem 6rem 1rem 1rem"class=" bg-light">
     {% if request.user.is_authenticated %}
     <a class="btn btn-primary" href='{% url "crear_post" %}' style="margin: auto; width:10rem">Crear post</a>
-    {% endif %}
     <a class="btn btn-primary" href='{% url "buscar_post" %}' style="width:10rem">Buscar post</a>
+    {% endif %}
 </div>
 
 <main class="my-5">
