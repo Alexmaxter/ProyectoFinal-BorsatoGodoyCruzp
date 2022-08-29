@@ -8,12 +8,14 @@ from django.contrib.auth.models import User
 
 def buzon(request):
 
-    lista_mensajes = Mensaje.objects.filter(destinatario=request.user).order_by("-id")
-
+    recibidos = Mensaje.objects.filter(destinatario=request.user).order_by("-id")
+    enviados = Mensaje.objects.filter(remitente=request.user).order_by("-id")
+    
 
     cantidad_mensajes= Mensaje.objects.filter(leido=False).filter(destinatario=request.user).count()
 
-    return render(request, 'buzon.html',{"lista_mensajes":lista_mensajes,'cantidad_mensajes':cantidad_mensajes})
+
+    return render(request, 'buzon.html',{"recibidos":recibidos,'cantidad_mensajes':cantidad_mensajes,'enviados':enviados})
 
 def ver_mensaje(request, id):
 
