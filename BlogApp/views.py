@@ -1,7 +1,9 @@
+from django.urls import reverse_lazy
 from BlogApp.forms import CommentForm, FormularioPost, FormularioBusqueda
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from BlogApp.models import Post
+from django.views.generic.edit import DeleteView
 
 
 def blog(request):
@@ -113,11 +115,15 @@ def editar_post(request, id):
     return render(request, "BlogApp/editar_post.html", {"form": form, "post": post})
 
 
-@ login_required
-def eliminar_post(request, id):
 
-    post = Post.objects.get(id=id)
-    post.delete()
+# def eliminar_post(request, id):
 
-    return redirect('blog')
+#     post = Post.objects.get(id=id)
+#     post.delete()
 
+#     return redirect('blog')
+# @ login_required
+class DeleteView(DeleteView):
+    model = Post
+    success_url = "/blog"
+    template_name ="BlogApp/desea_eliminar.html"

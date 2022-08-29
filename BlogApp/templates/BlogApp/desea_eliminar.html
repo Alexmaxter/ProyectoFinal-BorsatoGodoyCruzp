@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block titulo %}
+<title>Eliminar</title>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<form method="post">{% csrf_token %}
+     
+<p><H3>Estas seguro que deseas eliminar el post? "{{ object }}"?</H3></p>
+     <input type="submit" value="Confirmar">
+</form>
+    
+{% endblock contenido %}
