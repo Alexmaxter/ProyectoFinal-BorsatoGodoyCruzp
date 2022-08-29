@@ -20,7 +20,9 @@
     <div style="text-align: center; ">
     <p style="margin: 1rem;"> {{formulario_post.contenido }}{{formulario_post.media}}</p>
     </div>
-    <p style="text-align: center"> {{formulario_post.imagen }} </p>
+    <p class="btn-success   " style="text-align:center;    padding:0.5rem;">La imagen no debe superar los 5 MB
+     |
+      {{formulario_post.imagen }}</p>
     <div style="width: 90%;margin: 2rem; overflow:hidden">
       
       <a class="btn btn-danger px-4 ms-3" href={% url "blog" %} style="float:left;">Cancelar</a>

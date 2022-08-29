@@ -84,10 +84,11 @@ def buscar_post(request):
 def editar_post(request, id):
 
     post = Post.objects.get(id=id)
-
     if request.method == 'POST':
 
         edit_form = FormularioPost(request.POST, request.FILES)
+
+        form = edit_form
 
         if edit_form.is_valid():
 
@@ -108,7 +109,6 @@ def editar_post(request, id):
             return redirect('blog')
 
         else:
-
             return render(request, "BlogApp/editar_post.html", {"form": form, "post": post})
 
     form = FormularioPost(initial={'titulo': post.titulo, 'subtitulo': post.subtitulo,
@@ -117,14 +117,6 @@ def editar_post(request, id):
     return render(request, "BlogApp/editar_post.html", {"form": form, "post": post})
 
 
-
-# def eliminar_post(request, id):
-
-#     post = Post.objects.get(id=id)
-#     post.delete()
-
-#     return redirect('blog')
-# @ login_required
 @method_decorator(login_required, name='dispatch')
 class DeleteView(DeleteView):
     model = Post
