@@ -2,6 +2,7 @@ from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.db import models
+from .validators import validate_file_size
 
 
 class PublishingUser(models.Model):
@@ -16,7 +17,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=50)
     subtitulo = models.CharField(max_length=50)
     contenido = RichTextField(blank=True, null=True)
-    imagen = models.ImageField(upload_to='blog', null=True, blank=True)
+    imagen = models.ImageField(upload_to='blog', null=True, blank=True, verbose_name="", validators=[validate_file_size])
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now_add=True)

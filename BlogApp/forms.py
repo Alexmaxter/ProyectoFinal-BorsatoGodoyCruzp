@@ -1,5 +1,7 @@
 from ckeditor.fields import RichTextFormField
 from django import forms
+from .validators import validate_file_size
+# from django.core.exceptions import ValidationError
 
 
 from BlogApp.models import Comment
@@ -13,6 +15,7 @@ class FormularioPost(forms.Form):
         attrs={'class': 'form-control', 'placeholder': 'Subtítulo'}), label="")
     contenido = RichTextFormField(widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Contenido'}), label="")
+    # imagen = forms.ImageField(label="", required=False, validators=[validate_file_size])
     imagen = forms.ImageField(label="", required=False)
 
     class Meta:

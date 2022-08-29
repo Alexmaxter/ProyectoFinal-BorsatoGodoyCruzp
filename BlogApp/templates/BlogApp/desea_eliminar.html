@@ -9,9 +9,10 @@
 {% block contenido %}
 
 <form method="post">{% csrf_token %}
-     
-<p><H3>Estas seguro que deseas eliminar el post? "{{ object }}"?</H3></p>
-     <input type="submit" value="Confirmar">
+     <p><H3>Estas seguro que deseas eliminar el post? "{{ object }}"?</H3></p>
+     <input class="btn btn-primary" type="submit" value="Confirmar">
+     <a class="btn btn-danger px-4 ms-3" href={% url 'blog' %}>Volver</a>
 </form>
+
     
 {% endblock contenido %}

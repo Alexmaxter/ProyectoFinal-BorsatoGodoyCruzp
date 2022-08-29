@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from BlogApp.models import Post
 from django.views.generic.edit import DeleteView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
 def blog(request):
@@ -123,7 +125,9 @@ def editar_post(request, id):
 
 #     return redirect('blog')
 # @ login_required
+@method_decorator(login_required, name='dispatch')
 class DeleteView(DeleteView):
     model = Post
     success_url = "/blog"
     template_name ="BlogApp/desea_eliminar.html"
+    
