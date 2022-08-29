@@ -16,6 +16,7 @@
             {% if masdatosusuarios.user.is_superuser %}
              <div class="contenedorFormulario" style="border-style: solid; border-color: #198754;border-width: 5px;border-radius: 10% 0rem 10% 0rem;">
                 {% else %}
+                
                 <div class="contenedorFormulario">
                 {% endif %}
                 <div class="text-center">
@@ -40,8 +41,12 @@
                   
                     {% endif %}
                     
-                    {% if masdatosusuarios.last_name %}
-                        <h5 class="mt-2 mb-0">{{masdatosusuarios.first_name}} {{masdatosusuarios.last_name}}</h5>
+                    {% if masdatosusuarios.first_name and masdatosusuarios.last_name %}
+                    <h5 class="mt-2 mb-0">{{masdatosusuarios.first_name}} {{masdatosusuarios.last_name}}</h5>
+                    {% elif masdatosusuarios.first_name %}
+                    <h5 class="mt-2 mb-0">{{masdatosusuarios.first_name}}</h5>
+                    {% elif masdatosusuarios.last_name %}
+                    <h5 class="mt-2 mb-0">{{masdatosusuarios.last_name}}</h5>
                     {% endif %}
 
                     <div style="margin: 1rem">
@@ -76,7 +81,11 @@
                         {% if  request.user == masdatosusuarios.user   %} 
                         <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %} style="margin: 0rem 1rem 0rem 1rem;;">Salir</a>
                         <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
-
+                        <a class="btn btn-primary px-4 ms-3" href={% url 'buzon' %} style="margin: 0rem 1rem 0rem 1rem;">Buzón {% if cantidad_mensajes > 0 %}<strong>({{cantidad_mensajes}})</strong>{% endif %}</a>
+                       
+                        {% else %}
+                        
+                        <a class="btn btn-primary px-4 ms-3" href={% url 'enviar_mensaje' masdatosusuarios.user.id %} style="margin: 0rem 1rem 0rem 1rem;">Enviar mensaje</a>
                         {% endif %}
                     </div>  
                 </div> 

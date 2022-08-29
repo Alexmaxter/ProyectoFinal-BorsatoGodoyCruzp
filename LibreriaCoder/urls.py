@@ -7,5 +7,6 @@ urlpatterns = [
     path('blog/', include('BlogApp.urls')),
     path('contacto/', include('ContactoApp.urls')),
     path('accounts/', include('accounts.urls')),
+    path('mensajes/', include('MensajeriaApp.urls')),
     path('', include('LibreriaCoderApp.urls')),
 ]

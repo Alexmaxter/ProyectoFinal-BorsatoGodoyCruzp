@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from .models import MasDatosUsuarios
 from BlogApp.models import Post
+from MensajeriaApp.models import Mensaje
 
 
 def iniciar_sesion(request):
@@ -62,8 +63,9 @@ def perfil(request):
 
     posts = Post.objects.filter(autor_id=request.user.id)
     masdatosusuarios = MasDatosUsuarios.objects.filter(id=request.user.id)
+    cantidad_mensajes= Mensaje.objects.filter(leido=False).filter(destinatario=request.user).count()
 
-    return render(request, 'accounts/perfil.html', {'posts': posts, 'masdatosusuarios': masdatosusuarios})
+    return render(request, 'accounts/perfil.html', {'posts': posts, 'masdatosusuarios': masdatosusuarios,'cantidad_mensajes':cantidad_mensajes})
 
 
 @login_required
@@ -126,7 +128,8 @@ def perfil_usuario(request, id):
     posts = Post.objects.filter(autor=id)
     masdatosusuarios = MasDatosUsuarios.objects.get(user=id)
 
-    return render(request, 'accounts/perfil_usuario.html', {"posts": posts, "masdatosusuarios": masdatosusuarios})
+    cantidad_mensajes= Mensaje.objects.filter(leido=False).filter(destinatario=request.user).count()
+    return render(request, 'accounts/perfil_usuario.html', {"posts": posts, "masdatosusuarios": masdatosusuarios,"cantidad_mensajes":cantidad_mensajes})
 
 
 class ChangePasswordView(PasswordChangeView, PasswordChangeDoneView):

@@ -120,3 +120,4 @@ def eliminar_post(request, id):
     post.delete()
 
     return redirect('blog')
+

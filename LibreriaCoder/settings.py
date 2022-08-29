@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'AcercaDeApp',
     'BlogApp',
     'ContactoApp',
+    'MensajeriaApp',
     'accounts',
 ]
 

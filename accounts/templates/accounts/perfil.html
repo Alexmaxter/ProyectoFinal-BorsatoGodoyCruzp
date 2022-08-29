@@ -64,6 +64,7 @@
                         
                         <a class="btn btn-danger px-4 ms-3" href={% url 'cerrar_sesion' %} style="margin: 0rem 1rem 0rem 1rem;;">Salir</a>
                         <a class="btn btn-primary px-4 ms-3" href={% url 'editar_perfil' %} style="margin: 0rem 1rem 0rem 1rem;">Editar perfil</a>
+                        <a class="btn btn-primary px-4 ms-3" href={% url 'buzon' %} style="margin: 0rem 1rem 0rem 1rem;">Buzón {% if cantidad_mensajes > 0 %}<strong>({{cantidad_mensajes}})</strong>{% endif %}</a>
                         
                     </div>
                 </div> 
